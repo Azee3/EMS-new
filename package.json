@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "ems",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:test": "node dist/test/server/server.mjs"
+    "serve:ssr:ems": "node dist/ems/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
@@ -31,7 +31,9 @@
     "@angular/platform-server": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.10",
+    "chart.js": "^4.5.1",
     "express": "^5.1.0",
+    "primeng": "^20.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

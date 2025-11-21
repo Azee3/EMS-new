@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test": {
+      "ems": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -57,11 +57,11 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "test:build:production"
+                  "production": {
+                    "buildTarget": "ems:build:production"
             },
             "development": {
-              "buildTarget": "test:build:development"
+                    "buildTarget": "ems:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,5 +86,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

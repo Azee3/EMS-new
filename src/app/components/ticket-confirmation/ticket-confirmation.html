@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h2>Ticket Confirmation</h2>
+  <div *ngIf="ticketDetails; else noTicket">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Your Ticket</h5>
+        <p><strong>Event:</strong> {{ ticketDetails.eventName }}</p>
+        <p><strong>Seats:</strong> {{ ticketDetails.seatNumbers.join(', ') }}</p>
+        <p><strong>Ticket Type:</strong> {{ ticketDetails.ticketType }}</p>
+        <img [src]="ticketDetails.qrCodeUrl" alt="QR Code">
+      </div>
+    </div>
+    <button class="btn btn-primary mt-3" (click)="emailTicket()">Email Ticket</button>
+  </div>
+  <ng-template #noTicket>
+    <div class="alert alert-warning">No confirmed ticket found. Complete a booking first.</div>
+  </ng-template>
+</div>

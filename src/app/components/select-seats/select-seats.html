@@ -1,0 +1,89 @@
+<div class="container">
+  <header>
+    <h1>Grand Theater</h1>
+    <p class="subtitle">Book your seats for an unforgettable experience</p>
+  </header>
+
+  <div class="main-content">
+    <div class="theater-section">
+      <div class="stage">STAGE</div>
+
+      <div class="control-room">CONTROL ROOM</div>
+
+      <div class="seating-area">
+        <div class="area-label">BALCONY</div>
+        <div class="seating-row" *ngFor="let row of balconyRows">
+          <div class="seat" [ngClass]="{'selected': seat.selected, 'occupied': seat.occupied}" (click)="selectSeat(seat)" *ngFor="let seat of row">
+            {{seat.number}}
+          </div>
+        </div>
+      </div>
+
+      <div class="seating-area">
+        <div class="area-label">LOWER FOYER</div>
+        <div class="seating-row" *ngFor="let row of lowerFoyerRows">
+          <div class="seat" [ngClass]="{'selected': seat.selected, 'occupied': seat.occupied}" (click)="selectSeat(seat)" *ngFor="let seat of row">
+            {{seat.number}}
+          </div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color available-color"></div>
+          <span>Available</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color selected-color"></div>
+          <span>Selected</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color occupied-color"></div>
+          <span>Occupied</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-section">
+      <h2>Book Your Tickets</h2>
+
+      <div class="booking-form">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" [(ngModel)]="booking.fullName" name="fullName" placeholder="Full name" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" [(ngModel)]="booking.email" name="email" placeholder="Email" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" [(ngModel)]="booking.phone" name="phone" placeholder="Phone" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="performance">Performance</label>
+          <input id="performance" type="text" [value]="booking.performance" readonly />
+        </div>
+
+        <div class="summary" *ngIf="selectedSeats.length > 0">
+          <h3>Order Summary</h3>
+          <div class="summary-item" *ngFor="let seat of selectedSeats">
+            <span>Seat {{seat.number}} ({{seat.section}})</span>
+            <span>${{getPrice(seat)}}</span>
+          </div>
+          <div class="summary-item total">
+            <span>Total</span>
+            <span>${{totalPrice}}</span>
+          </div>
+        </div>
+
+        <button (click)="confirmBooking()" [disabled]="selectedSeats.length === 0 || !booking.fullName || !booking.email || !selectedEvent">
+          Confirm Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="reports-container">
+  <h1>Admin Reports</h1>
+  <p>Comprehensive overview of system-wide activity.</p>
+
+  <!-- Auditorium Usage Report -->
+  <div id="auditorium-usage" class="report-section">
+    <h2>1. Auditorium Usage Report</h2>
+    <p>Which dates are occupied, which events are happening, and usage frequency.</p>
+    <button (click)="exportToPdf('auditorium-usage')">Export to PDF</button>
+    <table *ngIf="auditoriumUsage">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Event Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usage of auditoriumUsage.occupiedDates">
+          <td>{{ usage.date | date: 'fullDate' }}</td>
+          <td>{{ usage.eventName }}</td>
+          <td>{{ usage.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="summary">
+      <p>Usage Frequency: {{ auditoriumUsage.usageFrequency }} days</p>
+      <p>Free Days: {{ auditoriumUsage.freeDays }} | Booked Days: {{ auditoriumUsage.bookedDays }}</p>
+    </div>
+  </div>
+
+  <!-- Event Occupancy Report -->
+  <div id="event-occupancy" class="report-section">
+    <h2>2. Event Occupancy Report</h2>
+    <p>Total seats available vs. seats sold for each event and occupancy percentage.</p>
+    <button (click)="exportToPdf('event-occupancy')">Export to PDF</button>
+    <table *ngIf="eventOccupancy">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Total Seats</th>
+          <th>Sold Seats</th>
+          <th>Occupancy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of eventOccupancy">
+          <td>{{ event.eventName }}</td>
+          <td>{{ event.totalSeats }}</td>
+          <td>{{ event.soldSeats }}</td>
+          <td>{{ event.occupancy }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ticket Sales Summary -->
+  <div id="ticket-sales" class ="report-section">
+    
+    <h2>3. Ticket Sales Summary (Global)</h2>
+    <p>Overall system-wide statistics for ticket sales and revenue.</p>
+    <button (click)="exportToPdf('ticket-sales')">Export to PDF</button>
+    <div *ngIf="ticketSalesSummary" class="summary">
+      <p>Total Tickets Sold: {{ ticketSalesSummary.totalTicketsSold }}</p>
+      <p>Total Revenue: {{ ticketSalesSummary.totalRevenue | currency }}</p>
+      <p>Highest-Selling Event: {{ ticketSalesSummary.highestSellingEvent.eventName }} ({{ ticketSalesSummary.highestSellingEvent.ticketsSold }} tickets)</p>
+      <p>Lowest-Performing Event: {{ ticketSalesSummary.lowestPerformingEvent.eventName }} ({{ ticketSalesSummary.lowestPerformingEvent.ticketsSold }} tickets)</p>
+    </div>
+  </div>
+
+  <!-- Organizer Performance Report -->
+  <div id="organizer-performance" class="report-section">
+    <h2>4. Organizer Performance Report</h2>
+    <p>Summaries by organizer, including events created, tickets sold, and revenue generated.</p>
+    <button (click)="exportToPdf('organizer-performance')">Export to PDF</button>
+    <table *ngIf="organizerPerformance">
+      <thead>
+        <tr>
+          <th>Organizer Name</th>
+          <th>Events Created</th>
+          <th>Tickets Sold</th>
+          <th>Revenue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let org of organizerPerformance">
+          <td>{{ org.organizerName }}</td>
+          <td>{{ org.eventsCreated }}</td>
+          <td>{{ org.ticketsSold }}</td>
+          <td>{{ org.revenue | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Waitlist Overview Report -->
+  <div id="waitlist-overview" class="report-section">
+    <h2>5. Waitlist Overview Report</h2>
+    <p>Events with waitlists, total waitlist entries, and notification status.</p>
+    <button (click)="exportToPdf('waitlist-overview')">Export to PDF</button>
+    <div *ngIf="waitlistOverview" class="summary">
+      <p>Events with Waitlists: {{ waitlistOverview.eventsWithWaitlists }}</p>
+      <p>Over-Capacity Events: {{ waitlistOverview.overCapacityEvents.join(', ') }}</p>
+      <p>Total Waitlist Entries: {{ waitlistOverview.totalWaitlistEntries }}</p>
+      <p>Attendees Still Waiting: {{ waitlistOverview.attendeesStillWaiting }}</p>
+      <p>Notifications Sent: {{ waitlistOverview.notificationsSent }}</p>
+    </div>
+  </div>
+
+  <!-- Payment Summary -->
+  <div id="payment-summary" class="report-section">
+    <h2>6. Payment Summary (System-Wide)</h2>
+    <p>Total successful and failed payments, and revenue trends.</p>
+    <button (click)="exportToPdf('payment-summary')">Export to PDF</button>
+    <div *ngIf="paymentSummary" class="summary">
+      <p>Successful Payments: {{ paymentSummary.successfulPayments }}</p>
+      <p>Failed Payments: {{ paymentSummary.failedPayments }}</p>
+      <p>Total Revenue: {{ paymentSummary.totalRevenue | currency }}</p>
+      <p>Event with Highest Revenue: {{ paymentSummary.eventWithHighestRevenue.eventName }} ({{ paymentSummary.eventWithHighestRevenue.revenue | currency }})</p>
+      <h3>Revenue Trend</h3>
+      <ul>
+        <li *ngFor="let trend of paymentSummary.revenueTrend">
+          {{ trend.month }}: {{ trend.revenue | currency }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
