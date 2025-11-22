@@ -16,6 +16,9 @@ import { AdminManageOrganizersComponent } from './components/admin-manage-organi
 import { SetPasswordComponent } from './components/set-password/set-password';
 import { AdminOrganizerDetailComponent } from './components/admin-organizer-detail/admin-organizer-detail';
 import { AdminReportsComponent } from './components/admin-reports/admin-reports';
+import { SeatSelectionComponent } from './components/seat-selection/seat-selection';
+import{ SelectingseatComponent } from './components/selectingseat/selectingseat';
+
 
 
 export const routes: Routes = [
@@ -23,7 +26,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'browse-events', component: BrowseEventsComponent },
-  { path: 'select-seats', component: SelectSeatsComponent ,canActivate: [AuthGuard, AttendeeGuard]},
+  { path: 'select-seats', component: SelectSeatsComponent ,canActivate: [/*AuthGuard, AttendeeGuard*/]},
   { path: 'promo-code', component: PromoCodeComponent },
   { path: 'review-booking', component: ReviewBookingComponent, canActivate: [AuthGuard, AttendeeGuard] },
   { path: 'payment-process', component: PaymentProcessComponent, canActivate: [AuthGuard, AttendeeGuard] },
@@ -33,4 +36,7 @@ export const routes: Routes = [
   ,{ path: 'admin/organizers/:id', component: AdminOrganizerDetailComponent, canActivate: [AuthGuard, AdminGuard] }
   ,{ path: 'set-password', component: SetPasswordComponent, canActivate: [AuthGuard] }
   ,{ path: 'admin/reports', component: AdminReportsComponent, canActivate: [AuthGuard, AdminGuard] }
+  ,{ path: 'seat-selection', component: SeatSelectionComponent  }
+  ,{ path: 'selectingseat', component: SelectingseatComponent  }
+ 
 ];

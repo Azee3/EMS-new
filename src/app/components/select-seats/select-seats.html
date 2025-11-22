@@ -3,27 +3,33 @@
     <h1>Grand Theater</h1>
     <p class="subtitle">Book your seats for an unforgettable experience</p>
   </header>
+  
+  <div class="picture">
+    <img src="https://shantanand-adt.org/wp-content/uploads/2025/11/SEATING-NUMBERING-SHEET-scaled-1.jpg" alt="Seating Chart" class="image">
+  </div>
 
   <div class="main-content">
+
     <div class="theater-section">
-      <div class="stage">STAGE</div>
-
-      <div class="control-room">CONTROL ROOM</div>
-
-      <div class="seating-area">
-        <div class="area-label">BALCONY</div>
-        <div class="seating-row" *ngFor="let row of balconyRows">
-          <div class="seat" [ngClass]="{'selected': seat.selected, 'occupied': seat.occupied}" (click)="selectSeat(seat)" *ngFor="let seat of row">
-            {{seat.number}}
-          </div>
-        </div>
+      <div class="section-nav">
+        <button *ngFor="let section of sections; let i = index" 
+                (click)="changeSection(i)"
+                [class.active]="i === currentSectionIndex">
+          {{section.name}}
+        </button>
       </div>
 
-      <div class="seating-area">
-        <div class="area-label">LOWER FOYER</div>
-        <div class="seating-row" *ngFor="let row of lowerFoyerRows">
-          <div class="seat" [ngClass]="{'selected': seat.selected, 'occupied': seat.occupied}" (click)="selectSeat(seat)" *ngFor="let seat of row">
-            {{seat.number}}
+      <div class="seating-container">
+        <div *ngFor="let section of sections; let i = index">
+          <div class="seating-area" *ngIf="i === currentSectionIndex">
+            <div class="area-label">{{section.name}}</div>
+            <div class="seating-row" *ngFor="let row of section.seatRows">
+                <div class="row-indicator">{{$any(row).rowLetter}}</div>
+              <div class="seat" [ngClass]="{'selected': seat.selected, 'occupied': seat.occupied}" (click)="selectSeat(seat)" *ngFor="let seat of row">
+                {{seat.number.split('-')[1]}}
+              </div>
+              <div class="row-indicator">{{$any(row).rowLetter}}</div>
+            </div>
           </div>
         </div>
       </div>

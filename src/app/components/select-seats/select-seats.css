@@ -41,20 +41,33 @@
             display: flex;
             flex-wrap: wrap;
             padding: 20px;
+            gap: 20px;
         }
         
         .theater-section {
             flex: 1;
             min-width: 300px;
             padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .image{
+            flex: 1;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         .booking-section {
-            flex: 1;
-            min-width: 300px;
+            
+            min-width: 100px;
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 8px;
+            border: 1px solid #eee;
         }
         
         .stage {
@@ -95,7 +108,18 @@
         .seating-row {
             display: flex;
             justify-content: center;
+            align-items: center;
             margin-bottom: 10px;
+        }
+        
+        .row-indicator {
+            width: 30px;
+            height: 30px;
+            margin: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
         
         .seat {
@@ -103,7 +127,7 @@
             height: 30px;
             margin: 3px;
             background-color: #28a745;
-            border-radius: 4px;
+            border-radius: 50%;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
@@ -235,6 +259,43 @@
         
         .occupied-color {
             background-color: #dc3545;
+        }
+        
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-nav button {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            /* Use existing button styles */
+            width: auto;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        .section-nav button:hover {
+            background-color: #f0f0f0;
+            border-color: #ccc;
+            color: #333;
+        }
+        
+        .section-nav button.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .seating-container {
+            min-height: 300px; /* To prevent layout shift when changing sections */
         }
         
         @media (max-width: 768px) {
