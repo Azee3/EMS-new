@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   registerForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
@@ -40,9 +39,9 @@ export class RegisterComponent {
 
     this.loading = true;
     try {
-      const { fullName, phone, email, password } = this.registerForm.value as any;
+      const { fullName, email, password } = this.registerForm.value as any;
       const passwordHash = await this.hashPassword(password);
-      const user = await this.users.register({ fullName, phone, email, passwordHash, role: 'attendee' });
+      const user = await this.users.register({ fullName, email, passwordHash, role: 'attendee' });
       // Log in the new user to ensure session is fully initialized
       await this.auth.login(email, password);
       // Redirect to browse events for booking

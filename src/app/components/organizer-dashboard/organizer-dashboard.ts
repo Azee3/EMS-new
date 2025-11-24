@@ -4,13 +4,13 @@ import { ReportService } from '../../services/admin-report.service';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'app-admin-reports',
+  selector: 'app-organizer-dashboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './admin-reports.html',
-  styleUrl: './admin-reports.css'
+  templateUrl: './organizer-dashboard.html',
+  styleUrl: './organizer-dashboard.css'
 })
-export class AdminReportsComponent implements OnInit {
+export class OrganizerDashboardComponent implements OnInit {
   auditoriumUsage: any;
   eventOccupancy: any;
   ticketSalesSummary: any;

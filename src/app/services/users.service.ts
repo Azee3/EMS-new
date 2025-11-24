@@ -5,7 +5,6 @@ export interface StoredUser {
   id: string;
   fullName: string;
   email: string;
-  phone: string;
   passwordHash: string;
   status: 'active' | 'inactive' | 'pending';
   role?: 'admin' | 'organizer' | 'attendee';
@@ -33,7 +32,6 @@ export class UsersService {
         id: u.userId,
         fullName: u.fullName,
         email: u.email,
-        phone: u.phone,
         passwordHash: u.passwordHash,
         status: 'active',
         role: u.role,
@@ -51,7 +49,6 @@ export class UsersService {
         id: a.adminId,
         fullName: a.fullName,
         email: a.email,
-        phone: a.phone,
         passwordHash: a.passwordHash,
         status: a.isActive ? 'active' : 'inactive',
         role: a.role,
@@ -78,7 +75,7 @@ export class UsersService {
     return this.users.find(u => u.id === id);
   }
 
-  async updateUser(id: string, payload: { fullName?: string; email?: string; phone?: string; organizationName?: string; isActive?: boolean; }): Promise<StoredUser> {
+  async updateUser(id: string, payload: { fullName?: string; email?: string; organizationName?: string; isActive?: boolean; }): Promise<StoredUser> {
     const idx = this.users.findIndex(u => u.id === id);
     if (idx === -1) throw new Error('User not found');
     const now = new Date().toISOString();
@@ -86,7 +83,6 @@ export class UsersService {
       ...this.users[idx],
       fullName: payload.fullName ?? this.users[idx].fullName,
       email: payload.email ?? this.users[idx].email,
-      phone: payload.phone ?? this.users[idx].phone,
       organizationName: payload.organizationName ?? this.users[idx].organizationName ?? '',
       isActive: payload.isActive ?? this.users[idx].isActive,
       updatedAt: now
@@ -98,7 +94,7 @@ export class UsersService {
     this.users = this.users.filter(u => u.id !== id);
   }
 
-  async register(payload: { fullName: string; email: string; phone: string; passwordHash: string; role?: 'admin' | 'organizer' | 'attendee' }): Promise<StoredUser> {
+  async register(payload: { fullName: string; email: string; passwordHash: string; role?: 'admin' | 'organizer' | 'attendee' }): Promise<StoredUser> {
     const exists = this.users.some(u => u.email.toLowerCase() === payload.email.toLowerCase());
     if (exists) throw new Error('Email already registered');
     const now = new Date().toISOString();
@@ -106,7 +102,6 @@ export class UsersService {
       id: String(Date.now()),
       fullName: payload.fullName,
       email: payload.email,
-      phone: payload.phone,
       passwordHash: payload.passwordHash,
       status: 'active',
       role: payload.role ?? 'attendee',
@@ -117,7 +112,7 @@ export class UsersService {
     return user;
   }
 
-  async createOrganizer(payload: { fullName: string; email: string; phone?: string; organizationName?: string; passwordHash?: string; }): Promise<StoredUser> {
+  async createOrganizer(payload: { fullName: string; email: string; organizationName?: string; passwordHash?: string; }): Promise<StoredUser> {
     const exists = this.users.some(u => u.email.toLowerCase() === payload.email.toLowerCase());
     if (exists) throw new Error('Email already registered');
     const now = new Date().toISOString();
@@ -127,7 +122,6 @@ export class UsersService {
       id: 'org-' + Date.now(),
       fullName: payload.fullName,
       email: payload.email,
-      phone: payload.phone || '',
       passwordHash: defaultHash,
       status: 'active',
       role: 'organizer',

@@ -1,0 +1,79 @@
+<div class="my-events-container">
+  <h2>My Events Dashboard</h2>
+
+  <div class="view-switcher">
+    <button 
+      [class.active]="activeView === 'upcoming'" 
+      (click)="setView('upcoming')">
+      Upcoming Events
+    </button>
+    <button 
+      [class.active]="activeView === 'history'" 
+      (click)="setView('history')">
+      Booking History
+    </button>
+    <button 
+      [class.active]="activeView === 'waitlist'" 
+      (click)="setView('waitlist')">
+      My Waitlists
+    </button>
+  </div>
+
+  <div [ngSwitch]="activeView" class="content-area">
+    <!-- Upcoming Bookings View -->
+    <div *ngSwitchCase="'upcoming'">
+      <ng-container *ngIf="upcomingBookings$ | async as bookings; else loading">
+        <div *ngIf="bookings.length > 0; else noUpcomingBookings" class="bookings-list">
+          <div *ngFor="let booking of bookings" class="booking-card">
+            <h3>{{ booking.event?.title || 'Event details not found' }}</h3>
+            <p><strong>Status:</strong> <span class="status-{{booking.event?.status}}">{{ booking.event?.status }}</span></p>
+            <p><strong>Date:</strong> {{ booking.event?.date | date: 'fullDate' }} at {{ booking.event?.startTime }}</p>
+            <p><strong>Seats:</strong> {{ booking.seatNumbers.join(', ') }}</p>
+            <p><strong>Final Price:</strong> {{ booking.finalPrice | currency }}</p>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noUpcomingBookings>
+        <p class="empty-state">You have no upcoming booked events.</p>
+      </ng-template>
+    </div>
+
+    <!-- Past Bookings View -->
+    <div *ngSwitchCase="'history'">
+      <ng-container *ngIf="pastBookings$ | async as bookings; else loading">
+        <div *ngIf="bookings.length > 0; else noPastBookings" class="bookings-list">
+          <div *ngFor="let booking of bookings" class="booking-card history">
+             <h3>{{ booking.event?.title || 'Event details not found' }}</h3>
+            <p><strong>Status:</strong> <span class="status-{{booking.event?.status}}">{{ booking.event?.status }}</span></p>
+            <p><strong>Date:</strong> {{ booking.event?.date | date: 'fullDate' }}</p>
+            <p><strong>Booking Status:</strong> <span class="status-{{booking.status}}">{{ booking.status }}</span></p>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noPastBookings>
+        <p class="empty-state">You have no past events in your history.</p>
+      </ng-template>
+    </div>
+
+    <!-- Waitlist View -->
+    <div *ngSwitchCase="'waitlist'">
+      <ng-container *ngIf="userWaitlists$ | async as waitlists; else loading">
+        <div *ngIf="waitlists.length > 0; else noWaitlists" class="bookings-list">
+          <div *ngFor="let item of waitlists" class="booking-card waitlist">
+            <h3>{{ item.event?.title || 'Event details not found' }}</h3>
+            <p><strong>Event Status:</strong> <span class="status-{{item.event?.status}}">{{ item.event?.status }}</span></p>
+            <p><strong>Your Position:</strong> {{ item.position }}</p>
+            <p><strong>Date Joined:</strong> {{ item.joinedAt | date: 'medium' }}</p>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noWaitlists>
+        <p class="empty-state">You are not on any waitlists.</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p class="empty-state">Loading...</p>
+  </ng-template>
+</div>

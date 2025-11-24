@@ -7,7 +7,6 @@ export interface User {
   name?: string;
   fullName?: string;
   email: string;
-  phone?: string;
   passwordHash?: string;
   status?: 'active' | 'inactive' | 'pending';
   createdAt?: string;
@@ -48,7 +47,6 @@ export class AuthService {
         id: stored.id,
         fullName: stored.fullName,
         email: stored.email,
-        phone: stored.phone,
         status: stored.status,
         createdAt: stored.createdAt,
         updatedAt: stored.updatedAt,

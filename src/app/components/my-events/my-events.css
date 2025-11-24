@@ -1,0 +1,107 @@
+.my-events-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.view-switcher {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.view-switcher button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.view-switcher button:hover {
+  color: #0056b3;
+}
+
+.view-switcher button.active {
+  color: #0056b3;
+  font-weight: bold;
+  border-bottom-color: #0056b3;
+}
+
+.content-area {
+  margin-top: 20px;
+}
+
+.bookings-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.booking-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.booking-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.booking-card h3 {
+  margin-top: 0;
+  color: #0056b3;
+}
+
+.booking-card p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.booking-card.history {
+  background-color: #f8f9fa;
+  border-color: #e9ecef;
+}
+
+.booking-card.waitlist {
+  background-color: #fffaf0;
+  border-color: #ffeccc;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #777;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+/* Status colors */
+.status-upcoming, .status-ongoing, .status-paid {
+  color: #28a745;
+  font-weight: bold;
+}
+.status-pending {
+  color: #ffc107;
+  font-weight: bold;
+}
+.status-past, .status-cancelled {
+  color: #dc3545;
+  font-weight: bold;
+}

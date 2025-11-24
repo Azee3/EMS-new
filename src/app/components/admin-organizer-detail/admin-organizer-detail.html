@@ -5,7 +5,6 @@
     <dl class="row">
       <dt class="col-sm-3">Full name</dt><dd class="col-sm-9">{{ organizer.fullName }}</dd>
       <dt class="col-sm-3">Email</dt><dd class="col-sm-9">{{ organizer.email }}</dd>
-      <dt class="col-sm-3">Phone</dt><dd class="col-sm-9">{{ organizer.phone }}</dd>
       <dt class="col-sm-3">Organization</dt><dd class="col-sm-9">{{ organizer.organizationName }}</dd>
       <dt class="col-sm-3">First login</dt><dd class="col-sm-9">{{ organizer.isFirstLogin ? 'Yes' : 'No' }}</dd>
       <dt class="col-sm-3">Created</dt><dd class="col-sm-9">{{ organizer.createdAt }}</dd>
@@ -28,10 +27,6 @@
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input class="form-control" formControlName="email" />
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Phone</label>
-        <input class="form-control" formControlName="phone" />
       </div>
       <div class="mb-3">
         <label class="form-label">Organization</label>

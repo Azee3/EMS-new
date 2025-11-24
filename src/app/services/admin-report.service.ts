@@ -25,8 +25,9 @@ export class ReportService {
 
   getEventOccupancy() {
     return MOCK_EVENTS.map(event => {
-      const totalSeats = MOCK_SEATS.filter(s => s.eventId === event.eventId).length;
-      const soldSeats = MOCK_BOOKINGS.filter(b => b.eventId === event.eventId && b.status === 'paid').reduce((acc, b) => acc + b.seats.length, 0);
+      const eventSeats = MOCK_SEATS.filter(s => s.eventId === event.eventId);
+      const totalSeats = eventSeats.length;
+      const soldSeats = eventSeats.filter(seat => seat.status === 'sold').length;
       const occupancy = totalSeats > 0 ? (soldSeats / totalSeats) * 100 : 0;
       return {
         eventName: event.title,
@@ -38,14 +39,21 @@ export class ReportService {
   }
 
   getTicketSalesSummary() {
-    const totalTicketsSold = MOCK_BOOKINGS.filter(b => b.status === 'paid').reduce((acc, b) => acc + b.seats.length, 0);
-    const totalRevenue = MOCK_PAYMENTS.filter(p => p.status === 'successful').reduce((acc, p) => acc + p.amount, 0);
+    // Count actual sold seats from MOCK_SEATS instead of bookings
     const eventSales = MOCK_EVENTS.map(event => {
-      const sales = MOCK_BOOKINGS.filter(b => b.eventId === event.eventId && b.status === 'paid').reduce((acc, b) => acc + b.seats.length, 0);
-      return { eventName: event.title, ticketsSold: sales };
+      const soldSeats = MOCK_SEATS.filter(s => s.eventId === event.eventId && s.status === 'sold').length;
+      return { eventName: event.title, ticketsSold: soldSeats };
     });
-    const highestSelling = eventSales.sort((a, b) => b.ticketsSold - a.ticketsSold)[0];
-    const lowestSelling = eventSales.sort((a, b) => a.ticketsSold - b.ticketsSold)[0];
+    
+    const highestSelling = eventSales.reduce((max, event) => 
+      event.ticketsSold > max.ticketsSold ? event : max
+    );
+    const lowestSelling = eventSales.reduce((min, event) => 
+      event.ticketsSold < min.ticketsSold ? event : min
+    );
+
+    const totalTicketsSold = eventSales.reduce((sum, event) => sum + event.ticketsSold, 0);
+    const totalRevenue = MOCK_PAYMENTS.filter(p => p.status === 'successful').reduce((acc, p) => acc + p.amount, 0);
 
     return {
       totalTicketsSold,
@@ -59,8 +67,20 @@ export class ReportService {
     const organizers = MOCK_USERS.filter(u => u.role === 'organizer');
     return organizers.map(organizer => {
       const events = MOCK_EVENTS.filter(e => e.organizerId === organizer.userId);
-      const ticketsSold = MOCK_BOOKINGS.filter(b => events.some(e => e.eventId === b.eventId) && b.status === 'paid').reduce((acc, b) => acc + b.seats.length, 0);
-      const revenue = MOCK_PAYMENTS.filter(p => MOCK_BOOKINGS.some(b => b.bookingId === p.bookingId && events.some(e => e.eventId === b.eventId) && p.status === 'successful')).reduce((acc, p) => acc + p.amount, 0);
+      // Count sold seats from MOCK_SEATS instead of bookings
+      const ticketsSold = events.reduce((acc, event) => {
+        const eventSoldSeats = MOCK_SEATS.filter(s => s.eventId === event.eventId && s.status === 'sold').length;
+        return acc + eventSoldSeats;
+      }, 0);
+      
+      const revenue = MOCK_PAYMENTS.filter(p => 
+        MOCK_BOOKINGS.some(b => 
+          b.bookingId === p.bookingId && 
+          events.some(e => e.eventId === b.eventId) && 
+          p.status === 'successful'
+        )
+      ).reduce((acc, p) => acc + p.amount, 0);
+      
       return {
         organizerName: organizer.fullName,
         eventsCreated: events.length,
@@ -87,20 +107,34 @@ export class ReportService {
     const successfulPayments = MOCK_PAYMENTS.filter(p => p.status === 'successful').length;
     const failedPayments = MOCK_PAYMENTS.filter(p => p.status === 'failed').length;
     const totalRevenue = MOCK_PAYMENTS.filter(p => p.status === 'successful').reduce((acc, p) => acc + p.amount, 0);
+    
     const eventRevenue = MOCK_EVENTS.map(event => {
-        const revenue = MOCK_PAYMENTS.filter(p => MOCK_BOOKINGS.some(b => b.bookingId === p.bookingId && b.eventId === event.eventId && p.status === 'successful')).reduce((acc, p) => acc + p.amount, 0);
-        return { eventName: event.title, revenue: revenue };
+      // Calculate revenue from successful payments for this event
+      const revenue = MOCK_PAYMENTS.filter(p => 
+        MOCK_BOOKINGS.some(b => 
+          b.bookingId === p.bookingId && 
+          b.eventId === event.eventId && 
+          p.status === 'successful'
+        )
+      ).reduce((acc, p) => acc + p.amount, 0);
+      return { eventName: event.title, revenue: revenue };
     });
-    const highestRevenueEvent = eventRevenue.sort((a, b) => b.revenue - a.revenue)[0];
+    
+    const highestRevenueEvent = eventRevenue.reduce((max, event) => 
+      event.revenue > max.revenue ? event : max
+    );
 
     return {
       successfulPayments,
       failedPayments,
       totalRevenue,
-      revenueTrend: [ // mock trend data
+      revenueTrend: [ // mock trend data - you could generate this from actual payment dates
         { month: 'Jan', revenue: 1500 },
         { month: 'Feb', revenue: 2500 },
-        { month: 'Mar', revenue: 2000 }
+        { month: 'Mar', revenue: 2000 },
+        { month: 'Apr', revenue: 3200 },
+        { month: 'May', revenue: 2800 },
+        { month: 'Jun', revenue: 4100 }
       ],
       eventWithHighestRevenue: highestRevenueEvent
     };

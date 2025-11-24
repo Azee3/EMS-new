@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { EventService, EventItem } from '../../services/event.service';
+import { EventService } from '../../services/event.service';
+import { Event } from '../../models/event.model';
 import { BookingService, Booking } from '../../services/booking.service';
 
 @Component({
@@ -18,9 +19,9 @@ export class SelectSeatsComponent implements OnInit, OnDestroy {
     sections: any[] = [];
     currentSectionIndex: number = 0;
     selectedSeats: any[] = [];
-    booking: { fullName: string; email: string; phone?: string; performance: string } = { fullName: '', email: '', performance: '' };
+    booking: { fullName: string; email: string; performance: string } = { fullName: '', email: '', performance: '' };
     totalPrice: number = 0;
-    selectedEvent: EventItem | null = null;
+    selectedEvent: Event | null = null;
     private subs: Subscription[] = [];
 
     constructor(private auth: AuthService, private eventsService: EventService, private router: Router, private bookingService: BookingService) {}
@@ -31,14 +32,13 @@ export class SelectSeatsComponent implements OnInit, OnDestroy {
         if (user) {
             if (user.fullName) this.booking.fullName = user.fullName;
             if (user.email) this.booking.email = user.email;
-            if (user.phone) this.booking.phone = user.phone;
         }
 
         // subscribe to selected event
         const s = this.eventsService.selectedEvent$.subscribe(ev => {
             this.selectedEvent = ev;
             if (ev) {
-                this.booking.performance = `${ev.name} — ${ev.date} ${ev.time}`;
+                this.booking.performance = `${ev.title} — ${new Date(ev.date).toLocaleDateString()} ${ev.startTime}`;
             }
         });
         this.subs.push(s);
@@ -249,9 +249,8 @@ export class SelectSeatsComponent implements OnInit, OnDestroy {
             userId: this.auth.getUser()?.id,
             fullName: this.booking.fullName,
             email: this.booking.email,
-            phone: this.booking.phone,
-            eventId: this.selectedEvent.id,
-            eventName: this.selectedEvent.name,
+            eventId: this.selectedEvent.eventId,
+            eventName: this.selectedEvent.title,
             seatNumbers,
             subtotal: this.totalPrice,
             promoCode: null,

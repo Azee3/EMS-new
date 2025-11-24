@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let usage of auditoriumUsage.occupiedDates">
-          <td>{{ usage.date | date: 'fullDate' }}</td>
+          <td>{{ usage.date | date : 'fullDate' }}</td>
           <td>{{ usage.eventName }}</td>
           <td>{{ usage.status }}</td>
         </tr>
@@ -25,7 +25,9 @@
     </table>
     <div class="summary">
       <p>Usage Frequency: {{ auditoriumUsage.usageFrequency }} days</p>
-      <p>Free Days: {{ auditoriumUsage.freeDays }} | Booked Days: {{ auditoriumUsage.bookedDays }}</p>
+      <p>
+        Free Days: {{ auditoriumUsage.freeDays }} | Booked Days: {{ auditoriumUsage.bookedDays }}
+      </p>
     </div>
   </div>
 
@@ -52,20 +54,35 @@
         </tr>
       </tbody>
     </table>
+    <div class="chart-wrapper">
+      <div class="chart-container">
+        <canvas #eventOccupancyChart></canvas>
+      </div>
+    </div>
   </div>
 
   <!-- Ticket Sales Summary -->
-  <div id="ticket-sales" class ="report-section">
-    
+  <div id="ticket-sales" class="report-section">
     <h2>3. Ticket Sales Summary (Global)</h2>
     <p>Overall system-wide statistics for ticket sales and revenue.</p>
     <button (click)="exportToPdf('ticket-sales')">Export to PDF</button>
     <div *ngIf="ticketSalesSummary" class="summary">
       <p>Total Tickets Sold: {{ ticketSalesSummary.totalTicketsSold }}</p>
       <p>Total Revenue: {{ ticketSalesSummary.totalRevenue | currency }}</p>
-      <p>Highest-Selling Event: {{ ticketSalesSummary.highestSellingEvent.eventName }} ({{ ticketSalesSummary.highestSellingEvent.ticketsSold }} tickets)</p>
-      <p>Lowest-Performing Event: {{ ticketSalesSummary.lowestPerformingEvent.eventName }} ({{ ticketSalesSummary.lowestPerformingEvent.ticketsSold }} tickets)</p>
+      <p>
+        Highest-Selling Event: {{ ticketSalesSummary.highestSellingEvent.eventName }} ({{
+          ticketSalesSummary.highestSellingEvent.ticketsSold
+        }}
+        tickets)
+      </p>
+      <p>
+        Lowest-Performing Event: {{ ticketSalesSummary.lowestPerformingEvent.eventName }} ({{
+          ticketSalesSummary.lowestPerformingEvent.ticketsSold
+        }}
+        tickets)
+      </p>
     </div>
+    <canvas id="ticketSalesSummaryChart"></canvas>
   </div>
 
   <!-- Organizer Performance Report -->
@@ -116,7 +133,11 @@
       <p>Successful Payments: {{ paymentSummary.successfulPayments }}</p>
       <p>Failed Payments: {{ paymentSummary.failedPayments }}</p>
       <p>Total Revenue: {{ paymentSummary.totalRevenue | currency }}</p>
-      <p>Event with Highest Revenue: {{ paymentSummary.eventWithHighestRevenue.eventName }} ({{ paymentSummary.eventWithHighestRevenue.revenue | currency }})</p>
+      <p>
+        Event with Highest Revenue: {{ paymentSummary.eventWithHighestRevenue.eventName }} ({{
+          paymentSummary.eventWithHighestRevenue.revenue | currency
+        }})
+      </p>
       <h3>Revenue Trend</h3>
       <ul>
         <li *ngFor="let trend of paymentSummary.revenueTrend">
@@ -124,5 +145,6 @@
         </li>
       </ul>
     </div>
+    <canvas id="paymentSummaryChart"></canvas>
   </div>
 </div>

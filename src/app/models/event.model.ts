@@ -7,6 +7,8 @@ export interface Event {
   date: Date;
   startTime: string;
   endTime: string;
+  location: string;
+  ticketsLeft: number;
   status: 'upcoming' | 'ongoing' | 'past' | 'cancelled';
   seatingLayoutId: string;
   createdAt: Date;

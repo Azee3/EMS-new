@@ -23,7 +23,6 @@ export class AdminManageOrganizersComponent {
     this.form = this.fb.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
       organizationName: ['']
     });
   }
@@ -44,7 +43,6 @@ export class AdminManageOrganizersComponent {
       const created = await this.users.createOrganizer({
         fullName: vals.fullName || '',
         email: vals.email || '',
-        phone: vals.phone || '',
         organizationName: vals.organizationName || '',
         // leave password blank – organizer will set on first login
       });

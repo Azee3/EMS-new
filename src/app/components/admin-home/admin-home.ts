@@ -5,12 +5,12 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.html',
-  styleUrl: './admin-dashboard.css',
+  templateUrl: './admin-home.html',
+  styleUrl: './admin-home.css',
   standalone: true,
   imports: [CommonModule, RouterLink]
 })
-export class AdminDashboardComponent {
+export class AdminHomeComponent {
   constructor(public auth: AuthService) {}
 
   get currentUser() {

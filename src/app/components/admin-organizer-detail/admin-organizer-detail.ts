@@ -26,7 +26,6 @@ export class AdminOrganizerDetailComponent {
     this.form = this.fb.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
       organizationName: ['']
     });
   }
@@ -37,7 +36,6 @@ export class AdminOrganizerDetailComponent {
     this.form.patchValue({
       fullName: this.organizer.fullName || '',
       email: this.organizer.email || '',
-      phone: this.organizer.phone || '',
       organizationName: (this.organizer as any).organizationName || ''
     });
   }
@@ -51,7 +49,6 @@ export class AdminOrganizerDetailComponent {
       const updated = await this.users.updateUser(this.organizer.id, {
         fullName: vals.fullName || '',
         email: vals.email || '',
-        phone: vals.phone || '',
         organizationName: vals.organizationName || ''
       });
       this.organizer = updated;

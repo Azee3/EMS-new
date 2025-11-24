@@ -16,14 +16,6 @@
             </div>
 
             <div class="mb-3">
-              <label for="phone" class="form-label">Phone</label>
-              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Phone number">
-              <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched" class="text-danger">
-                Phone is required.
-              </div>
-            </div>
-
-            <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
               <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">

@@ -17,14 +17,14 @@ export class SetPasswordComponent {
   error = '';
   message = '';
 
-  private returnUrl = '/';
+  private returnUrl = '/organizer';
 
   constructor(private fb: FormBuilder, private auth: AuthService, private users: UsersService, private router: Router, private route: ActivatedRoute) {
     this.form = this.fb.group({
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm: ['', [Validators.required]]
     });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['/organizer'] || '/organizer';
   }
 
   get currentUser() {

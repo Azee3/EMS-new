@@ -58,3 +58,17 @@ thead {
 .summary p {
   margin: 0.5rem 0;
 }
+
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.chart-container {
+  position: relative;
+  height: 400px; /* Fixed height */
+  width: 100%;
+  max-width: 100%;
+}

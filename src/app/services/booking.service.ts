@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { EventItem } from './event.service';
 
 export interface Booking {
   id: string;
   userId?: string;
   fullName: string;
   email: string;
-  phone?: string;
   eventId: string;
   eventName: string;
   seatNumbers: string[];
