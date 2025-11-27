@@ -1,0 +1,14 @@
+* {
+    font-family: monsterrat, sans-serif;
+}
+
+.btn-primary {
+    background-color: #b11515;
+    color: white;
+    border: none;
+}
+
+.text-center {
+    text-align: center;
+    font-weight: bold;
+}

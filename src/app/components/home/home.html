@@ -1,9 +1,77 @@
-<div class="container mt-5">
-  <div class="text-center">
-    <h1>Welcome to the Ticketing Website</h1>
-    <p class="lead">Your one-stop solution for event ticketing.</p>
-    <hr class="my-4">
-    <p>Browse events, book tickets, and manage your bookings with ease.</p>
-    <a class="btn btn-primary btn-lg" routerLink="/browse-events" role="button">Browse Events</a>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<div class="background">
+  <div class="container">
+    <div class="content-section">
+      <h1 class="title">HELP Auditorium EMS Website</h1>
+      <hr class="my-4" />
+      <p class="lead">Browse events, book tickets, and manage your bookings with ease.</p>
+      <a class="btn btn-primary btn-lg" routerLink="/browse-events" role="button">Browse Events</a>
+    </div>
+
+    <div class="image-section">
+      <img src="assets/chair-homescreen.png" alt="Description of image" />
+    </div>
   </div>
+
+  <hr class="my-4" />
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="section-title">
+      <p>HELP Auditorium Facilities</p>
+    </div>
+
+    <div class="features">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chair"></i>
+          </div>
+
+          <p class="feature-desc">+700 Seats</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <p class="feature-desc">Online Booking</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="feature-desc">Flexibility</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="my-10" />
+
+  <section class="featured-events-section">
+    <div class="container mt-5">
+      <div class="text-center">
+        <h1>Featured Events</h1>
+      </div>
+      <div class="mt-5">
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let event of data">
+            <app-event-cards
+              [id]="event.id"
+              [title]="event.title"
+              [description]="event.description"
+              [picture]="event.picture"
+            ></app-event-cards>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+

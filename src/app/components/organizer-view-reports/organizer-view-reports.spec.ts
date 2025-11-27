@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrganizerHome } from './organizer-home';
+import { OrganizerViewReports } from './organizer-view-reports';
 
-describe('OrganizerHome', () => {
-  let component: OrganizerHome;
-  let fixture: ComponentFixture<OrganizerHome>;
+describe('OrganizerViewReports', () => {
+  let component: OrganizerViewReports;
+  let fixture: ComponentFixture<OrganizerViewReports>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrganizerHome]
+      imports: [OrganizerViewReports]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OrganizerHome);
+    fixture = TestBed.createComponent(OrganizerViewReports);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

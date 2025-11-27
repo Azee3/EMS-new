@@ -5,12 +5,13 @@
   </header>
   
   <div class="picture">
-    <img src="https://shantanand-adt.org/wp-content/uploads/2025/11/SEATING-NUMBERING-SHEET-scaled-1.jpg" alt="Seating Chart" class="image">
+    <img src='/assets/auditorium-layout.png' alt="Seating Chart" class="image">
   </div>
 
   <div class="main-content">
 
     <div class="theater-section">
+      <h3 class="section-toggle-title">Section Toggle</h3> 
       <div class="section-nav">
         <button *ngFor="let section of sections; let i = index" 
                 (click)="changeSection(i)"
@@ -25,7 +26,8 @@
             <div class="area-label">{{section.name}}</div>
             <div class="seating-row" *ngFor="let row of section.seatRows">
                 <div class="row-indicator">{{$any(row).rowLetter}}</div>
-              <div class="seat" [ngClass]="{'selected': seat.selected, 'occupied': seat.occupied}" (click)="selectSeat(seat)" *ngFor="let seat of row">
+              <div class="seat" [ngClass]="{'selected': seat.selected, 'occupied': seat.occupied, 'vip': seat.seatType === 'VIP'}" (click)="selectSeat(seat)" *ngFor="let seat of row">
+                <span class="seat-price" *ngIf="seat.seatType === 'VIP'">${{seat.price}}</span>
                 {{seat.number.split('-')[1]}}
               </div>
               <div class="row-indicator">{{$any(row).rowLetter}}</div>
@@ -35,6 +37,10 @@
       </div>
 
       <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color vip-color"></div>
+          <span>VIP</span>
+        </div>
         <div class="legend-item">
           <div class="legend-color available-color"></div>
           <span>Available</span>
@@ -72,8 +78,8 @@
         <div class="summary" *ngIf="selectedSeats.length > 0">
           <h3>Order Summary</h3>
           <div class="summary-item" *ngFor="let seat of selectedSeats">
-            <span>Seat {{seat.number}} ({{seat.section}})</span>
-            <span>${{getPrice(seat)}}</span>
+            <span>Seat {{seat.number}} ({{seat.section}}) ({{seat.seatType}})</span>
+            <span>${{seat.price}}</span>
           </div>
           <div class="summary-item total">
             <span>Total</span>

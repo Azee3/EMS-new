@@ -64,6 +64,7 @@
             <p><strong>Event Status:</strong> <span class="status-{{item.event?.status}}">{{ item.event?.status }}</span></p>
             <p><strong>Your Position:</strong> {{ item.position }}</p>
             <p><strong>Date Joined:</strong> {{ item.joinedAt | date: 'medium' }}</p>
+            <button class="exit-waitlist-btn" (click)="exitWaitlist(item.waitlistId)">Exit Waitlist</button>
           </div>
         </div>
       </ng-container>

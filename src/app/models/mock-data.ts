@@ -1,5 +1,4 @@
 import { User } from './user.model';
-import { Admin } from './admin.model';
 import { Event } from './event.model';
 import { TicketType } from './ticket-type.model';
 import { Seat } from './seat.model';
@@ -12,36 +11,15 @@ import { Waitlist } from './waitlist.model';
 // --- USERS ---
 export const MOCK_USERS: User[] = [
   {
-    userId: 'user-admin-01',
-    fullName: 'Admin User',
-    email: 'admin@helpevents.com',
-    role: 'admin',
-    passwordHash: 'hashed_password_admin',
-    isFirstLogin: false,
-    createdAt: new Date('2023-01-01'),
-    updatedAt: new Date('2023-01-01'),
-  },
-  {
     userId: 'user-organizer-01',
-    fullName: 'Sarah Johnson',
-    email: 'sarah@musicfest.co',
+    fullName: 'organizer 1',
+    email: 'org@email.com',
     role: 'organizer',
-    organizationName: 'Music Fest Co',
-    passwordHash: 'hashed_password_organizer',
+    organizationName: 'Good EO',
+    passwordHash: 'org123',
     isFirstLogin: false,
     createdAt: new Date('2023-02-15'),
     updatedAt: new Date('2023-02-15'),
-  },
-  {
-    userId: 'user-organizer-02',
-    fullName: 'Michael Chen',
-    email: 'org@email.com',
-    role: 'organizer',
-    organizationName: 'Tech Summit Org',
-    passwordHash: 'org123',
-    isFirstLogin: true,
-    createdAt: new Date('2024-01-10'),
-    updatedAt: new Date('2024-01-10'),
   },
   {
     userId: 'user-attendee-01',
@@ -53,62 +31,19 @@ export const MOCK_USERS: User[] = [
     createdAt: new Date('2023-03-20'),
     updatedAt: new Date('2023-03-20'),
   },
-  {
-    userId: 'user-attendee-02',
-    fullName: 'Emma Wilson',
-    email: 'emma.wilson@email.com',
-    role: 'attendee',
-    passwordHash: 'hashed_password_attendee2',
-    isFirstLogin: false,
-    createdAt: new Date('2024-02-15'),
-    updatedAt: new Date('2024-02-15'),
-  },
-  {
-    userId: 'user-attendee-03',
-    fullName: 'David Lee',
-    email: 'david.lee@email.com',
-    role: 'attendee',
-    passwordHash: 'hashed_password_attendee3',
-    isFirstLogin: false,
-    createdAt: new Date('2024-03-01'),
-    updatedAt: new Date('2024-03-01'),
-  },
-  {
-    userId: 'user-attendee-04',
-    fullName: 'Sophia Garcia',
-    email: 'sophia.garcia@email.com',
-    role: 'attendee',
-    passwordHash: 'hashed_password_attendee4',
-    isFirstLogin: false,
-    createdAt: new Date('2024-03-05'),
-    updatedAt: new Date('2024-03-05'),
-  },
-  {
-    userId: 'user-attendee-05',
-    fullName: 'James Wilson',
-    email: 'james.wilson@email.com',
-    role: 'attendee',
-    passwordHash: 'hashed_password_attendee5',
-    isFirstLogin: false,
-    createdAt: new Date('2024-03-10'),
-    updatedAt: new Date('2024-03-10'),
-  },
-];
 
-// --- ADMINS ---
-export const MOCK_ADMINS: Admin[] = [
   {
-    adminId: 'admin-001',
+    userId: 'user-admin-01',
     fullName: 'Primary Administrator',
     email: 'superadmin@ticketing.com',
     role: 'admin',
     passwordHash: 'admin123',
-    isActive: true,
-    lastLogin: new Date('2024-03-15'),
+    isFirstLogin: false,
     createdAt: new Date('2023-01-01'),
     updatedAt: new Date('2024-03-15'),
   },
 ];
+
 
 // --- EVENTS ---
 export const MOCK_EVENTS: Event[] = [
@@ -162,7 +97,50 @@ export const MOCK_EVENTS: Event[] = [
   },
 ];
 
-// --- SEATS for all events ---
+// Incorporate specific vip seating for event organizer ----- for select seat generation 
+export const MOCK_VIP_SEATS: Seat[] = [
+  { 
+    seatId: 'A-1',
+    row: 'A',
+    number: 1,
+    section: 'Lower Foyer',
+    eventId: 'evt-music-fest-2025',
+    ticketTypeId: 'VIP',
+    status: 'available'
+  },
+  { 
+    seatId: 'A-2',
+    row: 'A',
+    number: 2,
+    section: 'Lower Foyer',
+    eventId: 'evt-music-fest-2025',
+    ticketTypeId: 'VIP',
+    status: 'available'
+  },
+  { 
+    seatId: 'A-3',
+    row: 'A',
+    number: 3,
+    section: 'Lower Foyer',
+    eventId: 'evt-music-fest-2025',
+    ticketTypeId: 'VIP',
+    status: 'available'
+  },
+  { 
+    seatId: 'A-4',
+    row: 'A',
+    number: 4,
+    section: 'Lower Foyer',
+    eventId: 'evt-music-fest-2025',
+    ticketTypeId: 'VIP',
+    status: 'available'
+  }
+];
+
+
+
+
+// --- SEATS for all events --- ///////
 function generateSeatsForEvent(eventId: string): Seat[] {
   const sections = {
     'Lower Foyer': {
@@ -315,6 +293,8 @@ export const MOCK_TICKET_TYPES: TicketType[] = [
     seatsAssigned: MOCK_SEATS.filter(s => s.eventId === 'evt-comedy-night' && s.section === 'Lower Foyer' && ['C', 'D', 'E', 'F', 'G'].includes(s.row)).map(s => s.seatId),
   },
 ];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // --- PROMO CODES ---
 export const MOCK_PROMO_CODES: PromoCode[] = [

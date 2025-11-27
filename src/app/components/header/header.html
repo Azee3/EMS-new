@@ -1,14 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Ticketing</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">
+      <img src="assets/help-university-logo.png" alt="Ticketing Logo" class="navbar-logo" />
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="currentUser?.role === 'admin' ? '/admin' : '/'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+          <a
+            class="nav-link"
+            [routerLink]="
+              currentUser?.role === 'admin'
+                ? '/admin'
+                : currentUser?.role === 'organizer'
+                ? '/organizer'
+                : '/'
+            "
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
         </li>
 
         <li class="nav-item">
@@ -27,22 +50,19 @@
 
         <ng-container *ngIf="currentUser">
           <li class="nav-item">
-            <span class="nav-link">Welcome, {{currentUser.fullName || currentUser.name}}</span>
+            <span class="nav-link">Welcome, {{ currentUser.fullName || currentUser.name }}</span>
           </li>
 
           <ng-container *ngIf="currentUser?.role === 'attendee'">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/my-events" routerLinkActive="active">My Events</a>
-          </li>
-        </ng-container>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/my-events" routerLinkActive="active">My Events</a>
+            </li>
+          </ng-container>
 
           <li class="nav-item">
-            <a class="nav-link" (click)="logout()" style="cursor:pointer">Logout</a>
+            <a class="nav-link" (click)="logout()" style="cursor: pointer">Logout</a>
           </li>
         </ng-container>
-
-        
-
       </ul>
     </div>
   </div>

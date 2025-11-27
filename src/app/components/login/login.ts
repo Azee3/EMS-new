@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
+  styleUrls: ['./login.css'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule]
 })
@@ -42,6 +43,11 @@ export class LoginComponent {
         this.router.navigate(['/set-password'], { queryParams: { returnUrl } });
         return;
       }
+      if (user.role === 'organizer' && user.isFirstLogin === false) {
+        this.router.navigate(['/organizer'], { queryParams: { returnUrl } });
+        return;
+      }
+
       // default
       this.router.navigateByUrl(returnUrl);
     } catch (err: any) {

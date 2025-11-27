@@ -79,4 +79,8 @@ export class MyEventsComponent implements OnInit {
   setView(view: 'upcoming' | 'history' | 'waitlist'): void {
     this.activeView = view;
   }
+
+  exitWaitlist(waitlistId: string): void {
+    this.waitlistService.removeFromWaitlist(waitlistId);
+  }
 }

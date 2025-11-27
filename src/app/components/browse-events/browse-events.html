@@ -1,34 +1,21 @@
 <div class="container mt-4">
   <h2>Browse Events</h2>
   <div class="row">
-    <div class="col-md-4" *ngFor="let event of events">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">{{ event.title }}</h5>
-          <p class="card-text"><strong>Date:</strong> {{ event.date | date:'fullDate' }}</p>
-          <p class="card-text"><strong>Time:</strong> {{ event.startTime }}</p>
-          <p class="card-text"><strong>Location:</strong> {{ event.location }}</p>
-          <p class="card-text"><strong>Tickets Left:</strong> {{ event.ticketsLeft > 0 ? event.ticketsLeft : 'Sold Out' }}</p>
-          
-          <ng-container *ngIf="event.ticketsLeft > 0; else soldOut">
-            <button class="btn btn-primary" (click)="book(event)">Book Now</button>
-          </ng-container>
-
-          <ng-template #soldOut>
-            <ng-container *ngIf="event.status === 'upcoming'">
-              <ng-container *ngIf="!isOnWaitlist(event); else onWaitlist">
-                <button class="btn btn-secondary" (click)="joinWaitlist(event)">Join Waitlist</button>
-              </ng-container>
-              <ng-template #onWaitlist>
-                <button class="btn btn-success" disabled>On Waiting List</button>
-              </ng-template>
-            </ng-container>
-            <ng-container *ngIf="event.status !== 'upcoming'">
-               <button class="btn btn-secondary" disabled>Sold Out</button>
-            </ng-container>
-          </ng-template>
-        </div>
-      </div>
+    <div class="col-md-4 mb-4" *ngFor="let event of events">
+      <app-event-cards
+        [id]="event.eventId"
+        [title]="event.title"
+        [description]="event.description"
+        [picture]="event.posterURL || ''"
+        [date]="event.date"
+        [startTime]="event.startTime"
+        [location]="event.location"
+        [ticketsLeft]="event.ticketsLeft"
+        [status]="event.status"
+        [onWaitlist]="isOnWaitlist(event)"
+        (book)="book(event)"
+        (joinWaitlist)="joinWaitlist(event)"
+      ></app-event-cards>
     </div>
   </div>
 </div>

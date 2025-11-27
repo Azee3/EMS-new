@@ -8,7 +8,7 @@ import Chart from 'chart.js/auto';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './admin-reports.html',
-  styleUrl: './admin-reports.css'
+  styleUrl: './admin-reports.css',
 })
 export class AdminReportsComponent implements OnInit {
   auditoriumUsage: any;
@@ -18,7 +18,7 @@ export class AdminReportsComponent implements OnInit {
   waitlistOverview: any;
   paymentSummary: any;
 
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService) {}
 
   ngOnInit(): void {
     this.auditoriumUsage = this.reportService.getAuditoriumUsage();
@@ -44,7 +44,7 @@ export class AdminReportsComponent implements OnInit {
       new Chart('eventOccupancyChart', {
         type: 'bar',
         data: {
-          labels: labels,
+          labels: ["Event 1", "Event 2", "Event 3" ],
           datasets: [
             {
               label: 'Sold Seats',
@@ -71,11 +71,28 @@ export class AdminReportsComponent implements OnInit {
     }
   }
 
+  public chartOptions: any = {
+    scales: {
+      x: {
+        display: true, // Keep the axis line visible
+        ticks: {
+          display: false, // Hide only the labels
+        },
+        grid: {
+          display: false, // Optional: hide grid lines for x-axis
+        },
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
   renderTicketSalesSummaryChart(): void {
     if (this.ticketSalesSummary) {
       const labels = [
-        this.ticketSalesSummary.highestSellingEvent.eventName,
-        this.ticketSalesSummary.lowestPerformingEvent.eventName,
+        this.ticketSalesSummary.highestSellingEvent.eventId,
+        this.ticketSalesSummary.lowestPerformingEvent.eventId,
       ];
       const data = [
         this.ticketSalesSummary.highestSellingEvent.ticketsSold,
@@ -85,7 +102,7 @@ export class AdminReportsComponent implements OnInit {
       new Chart('ticketSalesSummaryChart', {
         type: 'bar',
         data: {
-          labels: labels,
+          labels: ["Highest Selling", "Lowest Selling"],
           datasets: [
             {
               label: 'Tickets Sold',

@@ -1,36 +1,50 @@
 <div class="container mt-4">
-  <h3>Manage Organizers</h3>
+  <h3 class="page-title">Manage Organizers</h3>
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="mb-3">
-      <label class="form-label">Full Name</label>
-      <input class="form-control" formControlName="fullName" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Email Address</label>
-      <input class="form-control" formControlName="email" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Organization Name</label>
-      <input class="form-control" formControlName="organizationName" />
-    </div>
+  <hr class="my-4" />
 
-    <button class="btn btn-primary" type="submit">Create Organizer</button>
-  </form>
-
-  <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
-  <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
-
-  <h4 class="mt-4">Existing Organizers</h4>
-  <ul class="list-group">
-    <li *ngFor="let o of organizers" class="list-group-item d-flex justify-content-between align-items-start">
-      <div>
-        <strong>{{ o.fullName }}</strong> — {{ o.email }} <br />
+  <div class="card">
+    <h4 class="card-header">Add New Organizers</h4>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input class="form-control" formControlName="fullName" />
       </div>
-      <div>
-        <a class="btn btn-sm btn-secondary me-2" [routerLink]="['/admin/organizers', o.id]">Details</a>
-        <button class="btn btn-sm btn-danger" (click)="deleteOrganizer(o.id)">Delete</button>
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input class="form-control" formControlName="email" />
       </div>
-    </li>
-  </ul>
+      <div class="mb-3">
+        <label class="form-label">Organization Name</label>
+        <input class="form-control" formControlName="organizationName" />
+      </div>
+    </form>
+    <button class="btn btn-primary" type="submit">Add Organizer</button>
+    <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+    <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+  </div>
+
+  <hr class="my-4" />
+
+  <div class="card">
+    <h4 class="card-header">Existing Organizers</h4>
+    <ul class="list-group">
+      <li
+        *ngFor="let o of organizers"
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
+        <div>
+          <strong>{{ o.fullName }}</strong> — {{ o.email }} <br />
+        </div>
+        <div>
+          <a class="btn btn-sm btn-secondary me-2" [routerLink]="['/admin/organizers', o.id]"
+            >Details</a
+          >
+          <button class="btn btn-sm btn-danger" (click)="deleteOrganizer(o.id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <hr class="my-4" />
 </div>

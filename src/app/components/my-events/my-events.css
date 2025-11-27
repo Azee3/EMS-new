@@ -105,3 +105,19 @@ h2 {
   color: #dc3545;
   font-weight: bold;
 }
+
+.exit-waitlist-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.exit-waitlist-btn:hover {
+  background-color: #c82333;
+}

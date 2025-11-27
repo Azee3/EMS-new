@@ -18,7 +18,13 @@ import { AdminOrganizerDetailComponent } from './components/admin-organizer-deta
 import { AdminReportsComponent } from './components/admin-reports/admin-reports';
 import { MyEventsComponent } from './components/my-events/my-events';
 import { OrganizerDashboardComponent } from './components/organizer-dashboard/organizer-dashboard';
-import { OrganizerHome } from './components/organizer-home/organizer-home';
+import { OrganizerCreateEventComponent } from './components/organizer-create-event/organizer-create-event';
+import { OrganizerSetupTicketsComponents } from './components/organizer-setup-tickets/organizer-setup-tickets';
+import { OrganizerViewReportsComponent } from './components/organizer-view-reports/organizer-view-reports';
+import { OrganizerManageEventsComponents } from './components/organizer-manage-events/organizer-manage-events';
+import { ScanQrComponent } from './components/scan-qr/scan-qr';
+import { OrganizerEditTicketTypeComponent } from './components/organizer-edit-ticket-type/organizer-edit-ticket-type'; 
+
 
 
 
@@ -40,8 +46,15 @@ export const routes: Routes = [
   ,{ path: 'set-password', component: SetPasswordComponent, canActivate: [/*AuthGuard*/] }
   ,{ path: 'admin/reports', component: AdminReportsComponent, canActivate: [AuthGuard, AdminGuard] }
   ,{ path: 'my-events', component: MyEventsComponent, canActivate: [/*AuthGuard, AttendeeGuard*/] },
-  {path: 'organizer/dashboard', component: OrganizerDashboardComponent, canActivate: [/*AuthGuard, AdminGuard*/]}
-  ,{path: 'organizer', component: OrganizerHome, canActivate: [/*AuthGuard, AdminGuard*/]}
+  {path: 'organizer', component: OrganizerDashboardComponent, canActivate: [/*AuthGuard, AdminGuard*/]},
+  {path: 'organizer/create-event', component: OrganizerCreateEventComponent},
+  {path: 'organizer/setup-tickets', component: OrganizerSetupTicketsComponents},
+  {path: 'organizer/view-reports', component: OrganizerViewReportsComponent},
+  {path: 'organizer/manage-events', component: OrganizerManageEventsComponents},
+  {path: 'scan-qr', component: ScanQrComponent},
+  {path: 'organizer/edit-ticket-type', component: OrganizerEditTicketTypeComponent}
+
+  
   
   
  

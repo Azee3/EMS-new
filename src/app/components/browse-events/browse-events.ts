@@ -1,3 +1,4 @@
+import { EventCards } from '../event-cards/event-cards';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-browse-events',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, EventCards],
   templateUrl: './browse-events.html',
   styleUrls: ['./browse-events.css']
 })

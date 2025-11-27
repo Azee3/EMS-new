@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MOCK_USERS, MOCK_ADMINS } from '../models/mock-data';
+import { MOCK_USERS } from '../models/mock-data';
 
 export interface StoredUser {
   id: string;
@@ -44,21 +44,7 @@ export class UsersService {
       });
     }
 
-    for (const a of MOCK_ADMINS) {
-      seeded.push({
-        id: a.adminId,
-        fullName: a.fullName,
-        email: a.email,
-        passwordHash: a.passwordHash,
-        status: a.isActive ? 'active' : 'inactive',
-        role: a.role,
-        isFirstLogin: false,
-        isActive: a.isActive,
-        lastLogin: a.lastLogin ? a.lastLogin.toISOString() : null,
-        createdAt: a.createdAt.toISOString(),
-        updatedAt: a.updatedAt.toISOString()
-      });
-    }
+    
 
     this.users = seeded;
   }
