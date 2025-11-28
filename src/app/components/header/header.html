@@ -16,6 +16,12 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <ng-container *ngIf="currentUser">
+      <li class="nav-item">
+        <span class="nav-link">Welcome, {{ currentUser.fullName || currentUser.name }}</span>
+      </li>
+    </ng-container>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
@@ -49,10 +55,6 @@
         </ng-container>
 
         <ng-container *ngIf="currentUser">
-          <li class="nav-item">
-            <span class="nav-link">Welcome, {{ currentUser.fullName || currentUser.name }}</span>
-          </li>
-
           <ng-container *ngIf="currentUser?.role === 'attendee'">
             <li class="nav-item">
               <a class="nav-link" routerLink="/my-events" routerLinkActive="active">My Events</a>

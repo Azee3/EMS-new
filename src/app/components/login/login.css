@@ -16,3 +16,15 @@
   color: white;
   border: none;
 }
+
+.register-link {
+  color: #0d6efd;       /* Bootstrap blue */
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none; /* remove underline */
+}
+
+.register-link:hover {
+  text-decoration: underline;  /* hover underline */
+  color: #084298;              /* darker blue on hover */
+}

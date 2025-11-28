@@ -112,3 +112,28 @@ p {
   
 }
 
+/* Make the image smaller */
+.img-inner img {
+  height: 450px;      /* adjust as you like (e.g., 250px, 350px) */
+  object-fit: cover;  /* keeps image proportions */
+}
+
+/* Caption styling */
+.img-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.img-caption h3 {
+  font-size: 28px; /* increase title size */
+  font-weight: bold;
+}
+
+.img-caption p {
+  font-size: 18px; /* increase description size */
+}

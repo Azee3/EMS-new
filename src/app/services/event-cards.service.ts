@@ -26,11 +26,6 @@ export class EventCards{
         description: 'Description 3',
       },
       
-      {
-        id: 4,
-        picture:'https://picsum.photos/id/11/200/100',
-        title: 'title1',
-        description: 'Description 4',
-      }
+      
   ];
 }
