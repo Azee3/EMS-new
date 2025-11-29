@@ -21,7 +21,7 @@ import { OrganizerDashboardComponent } from './components/organizer-dashboard/or
 import { OrganizerCreateEventComponent } from './components/organizer-create-event/organizer-create-event';
 import { OrganizerSetupTicketsComponent } from './components/organizer-setup-tickets/organizer-setup-tickets';
 import { OrganizerViewReportsComponent } from './components/organizer-view-reports/organizer-view-reports';
-import { OrganizerManageEventsComponents } from './components/organizer-manage-events/organizer-manage-events';
+import { ViewEventsComponent } from './components/view-events/view-events';
 import { ScanQrComponent } from './components/scan-qr/scan-qr';
 import { OrganizerGuard } from './services/organizer.guard';
 import { OrganizerEditTicketTypeComponent } from './components/organizer-edit-ticket-type/organizer-edit-ticket-type'; 
@@ -51,7 +51,7 @@ export const routes: Routes = [
   {path: 'organizer/create-event', component: OrganizerCreateEventComponent, canActivate: [AuthGuard, OrganizerGuard]},
   {path: 'organizer/setup-tickets', component: OrganizerSetupTicketsComponent, canActivate: [AuthGuard, OrganizerGuard]},
   {path: 'organizer/view-reports', component: OrganizerViewReportsComponent, canActivate: [AuthGuard, OrganizerGuard]},
-  {path: 'organizer/manage-events', component: OrganizerManageEventsComponents, canActivate: [AuthGuard, OrganizerGuard]},
+  {path: 'view-events', component: ViewEventsComponent, canActivate: [AuthGuard]},
   {path: 'scan-qr', component: ScanQrComponent},
   {path: 'organizer/edit-ticket-type', component: OrganizerEditTicketTypeComponent, canActivate: [AuthGuard, OrganizerGuard]}
 

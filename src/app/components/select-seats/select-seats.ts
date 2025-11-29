@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, User} from '../../services/auth.service';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../models/event.model';
 import { BookingService, Booking } from '../../services/booking.service';
 import { GenerateSeatsService } from '../../services/generate-seats.service';
+
 
 @Component({
     selector: 'app-select-seats',
@@ -17,6 +18,7 @@ import { GenerateSeatsService } from '../../services/generate-seats.service';
     styleUrls: ['./select-seats.css']
 })
 export class SelectSeatsComponent implements OnInit, OnDestroy {
+    currentUser: User | null = null;
     sections: any[] = [];
     currentSectionIndex: number = 0;
     selectedSeats: any[] = [];

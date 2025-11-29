@@ -82,7 +82,9 @@ export class AdminReportsComponent implements OnInit, AfterViewInit {
     this.waitlistOverview = data.waitlistOverview;
     this.paymentSummary = data.paymentSummary;
 
-    this.updateCharts();
+    if (this.eventOccupancyChart) {
+      this.updateCharts();
+    }
   }
 
   createCharts() {
@@ -92,9 +94,11 @@ export class AdminReportsComponent implements OnInit, AfterViewInit {
   }
 
   updateCharts() {
-    this.renderEventOccupancyChart();
-    this.renderTicketSalesSummaryChart();
-    this.renderPaymentSummaryChart();
+    if (this.eventOccupancyChart) {
+      this.renderEventOccupancyChart();
+      this.renderTicketSalesSummaryChart();
+      this.renderPaymentSummaryChart();
+    }
   }
 
   renderEventOccupancyChart(): void {

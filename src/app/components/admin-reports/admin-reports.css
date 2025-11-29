@@ -2,6 +2,8 @@
 .reports-page {
 }
 
+
+
 .report-chart {
   position: relative;
   height: 250px; /* Or any other desired height */
@@ -157,25 +159,39 @@
 /* Time Filter */
 .time-filter {
   display: flex;
-  gap: 10px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
-.time-filter button {
-  background: #f0f0f0;
-  border: 1px solid #ddd;
+.time-options {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.time-option {
   padding: 8px 16px;
-  border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s;
-  font-weight: 500;
+  border-right: 0 solid #eee;
+  border: none;
 }
 
-.time-filter button:hover {
-  background: #e0e0e0;
+.time-option:last-child {
+  border-right: none;
 }
 
-.time-filter button.active {
-  background: var(--primary);
+.time-option.active {
+  background: #b70122;
   color: white;
-  border-color: var(--primary);
+}
+
+.time-option:hover {
+  background: #f0f0f0;
+}
+
+.time-option.active:hover {
+  background: #b70122;
 }

@@ -13,10 +13,10 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-organizer-manage-events',
   imports: [CommonModule, EventCards],
-  templateUrl: './organizer-manage-events.html',
-  styleUrl: './organizer-manage-events.css',
+  templateUrl: './view-events.html',
+  styleUrl: './view-events.css',
 })
-export class OrganizerManageEventsComponents {
+export class ViewEventsComponent {
   events: Event[] = [];
   userWaitlists: Waitlist[] = [];
   private waitlistSub: Subscription | undefined;

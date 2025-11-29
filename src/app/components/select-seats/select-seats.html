@@ -108,7 +108,7 @@
         <button
           (click)="confirmBooking()"
           [disabled]="
-            selectedSeats.length === 0 || !booking.fullName || !booking.email || !selectedEvent
+            selectedSeats.length === 0 || !booking.fullName || !booking.email || !selectedEvent || currentUser?.role === 'organizer' || currentUser?.role === 'admin'
           "
         >
           Confirm Booking
