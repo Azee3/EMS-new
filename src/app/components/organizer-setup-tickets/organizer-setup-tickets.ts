@@ -7,6 +7,6 @@ import { RouterLink, Router } from "@angular/router";
   templateUrl: './organizer-setup-tickets.html',
   styleUrl: './organizer-setup-tickets.css',
 })
-export class OrganizerSetupTicketsComponents {
+export class OrganizerSetupTicketsComponent {
 
 }

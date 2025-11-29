@@ -1,7 +1,5 @@
 import { User } from './user.model';
 import { Event } from './event.model';
-import { TicketType } from './ticket-type.model';
-import { Seat } from './seat.model';
 import { PromoCode } from './promo-code.model';
 import { Booking } from './booking.model';
 import { Payment } from './payment.model';
@@ -17,7 +15,7 @@ export const MOCK_USERS: User[] = [
     role: 'organizer',
     organizationName: 'Good EO',
     passwordHash: 'org123',
-    isFirstLogin: false,
+    isFirstLogin: true,
     createdAt: new Date('2023-02-15'),
     updatedAt: new Date('2023-02-15'),
   },

@@ -19,10 +19,11 @@ import { AdminReportsComponent } from './components/admin-reports/admin-reports'
 import { MyEventsComponent } from './components/my-events/my-events';
 import { OrganizerDashboardComponent } from './components/organizer-dashboard/organizer-dashboard';
 import { OrganizerCreateEventComponent } from './components/organizer-create-event/organizer-create-event';
-import { OrganizerSetupTicketsComponents } from './components/organizer-setup-tickets/organizer-setup-tickets';
+import { OrganizerSetupTicketsComponent } from './components/organizer-setup-tickets/organizer-setup-tickets';
 import { OrganizerViewReportsComponent } from './components/organizer-view-reports/organizer-view-reports';
 import { OrganizerManageEventsComponents } from './components/organizer-manage-events/organizer-manage-events';
 import { ScanQrComponent } from './components/scan-qr/scan-qr';
+import { OrganizerGuard } from './services/organizer.guard';
 import { OrganizerEditTicketTypeComponent } from './components/organizer-edit-ticket-type/organizer-edit-ticket-type'; 
 
 
@@ -35,24 +36,24 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'browse-events', component: BrowseEventsComponent },
-  { path: 'select-seats', component: SelectSeatsComponent ,canActivate: [/*AuthGuard, AttendeeGuard*/]},
-  { path: 'promo-code', component: PromoCodeComponent },
+  { path: 'select-seats', component: SelectSeatsComponent ,canActivate: [AuthGuard, /*AttendeeGuard*/]},
+  { path: 'promo-code', component: PromoCodeComponent, canActivate: [AuthGuard, AttendeeGuard]},
   { path: 'review-booking', component: ReviewBookingComponent, canActivate: [AuthGuard, AttendeeGuard] },
   { path: 'payment-process', component: PaymentProcessComponent, canActivate: [AuthGuard, AttendeeGuard] },
   { path: 'ticket-confirmation', component: TicketConfirmationComponent, canActivate: [AuthGuard, AttendeeGuard] }
   ,{ path: 'admin', component: AdminHomeComponent, canActivate: [AuthGuard, AdminGuard] }
   ,{ path: 'admin/organizers', component: AdminManageOrganizersComponent, canActivate: [AuthGuard, AdminGuard] }
   ,{ path: 'admin/organizers/:id', component: AdminOrganizerDetailComponent, canActivate: [AuthGuard, AdminGuard] }
-  ,{ path: 'set-password', component: SetPasswordComponent, canActivate: [/*AuthGuard*/] }
+  ,{ path: 'set-password', component: SetPasswordComponent, canActivate: [AuthGuard] }
   ,{ path: 'admin/reports', component: AdminReportsComponent, canActivate: [AuthGuard, AdminGuard] }
-  ,{ path: 'my-events', component: MyEventsComponent, canActivate: [/*AuthGuard, AttendeeGuard*/] },
-  {path: 'organizer', component: OrganizerDashboardComponent, canActivate: [/*AuthGuard, AdminGuard*/]},
-  {path: 'organizer/create-event', component: OrganizerCreateEventComponent},
-  {path: 'organizer/setup-tickets', component: OrganizerSetupTicketsComponents},
-  {path: 'organizer/view-reports', component: OrganizerViewReportsComponent},
-  {path: 'organizer/manage-events', component: OrganizerManageEventsComponents},
+  ,{ path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard, AttendeeGuard] },
+  {path: 'organizer', component: OrganizerDashboardComponent, canActivate: [AuthGuard, OrganizerGuard]},
+  {path: 'organizer/create-event', component: OrganizerCreateEventComponent, canActivate: [AuthGuard, OrganizerGuard]},
+  {path: 'organizer/setup-tickets', component: OrganizerSetupTicketsComponent, canActivate: [AuthGuard, OrganizerGuard]},
+  {path: 'organizer/view-reports', component: OrganizerViewReportsComponent, canActivate: [AuthGuard, OrganizerGuard]},
+  {path: 'organizer/manage-events', component: OrganizerManageEventsComponents, canActivate: [AuthGuard, OrganizerGuard]},
   {path: 'scan-qr', component: ScanQrComponent},
-  {path: 'organizer/edit-ticket-type', component: OrganizerEditTicketTypeComponent}
+  {path: 'organizer/edit-ticket-type', component: OrganizerEditTicketTypeComponent, canActivate: [AuthGuard, OrganizerGuard]}
 
   
   

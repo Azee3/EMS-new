@@ -21,12 +21,17 @@ export class EventCards {
   @Input() ticketsLeft: number = 0;
   @Input() status: string = '';
   @Input() onWaitlist: boolean = false;
+  @Input() viewMode: 'user' | 'organizer' = 'user';
 
   @Output() book = new EventEmitter<void>();
   @Output() joinWaitlist = new EventEmitter<void>();
+  @Output() view = new EventEmitter<void>();
 
   onBook() {
     this.book.emit();
+  }
+  onView() {
+    this.view.emit();
   }
 
   onJoinWaitlist() {

@@ -1,7 +1,7 @@
 <div class="container">
   <header>
-    <h1>Grand Theater</h1>
-    <p class="subtitle">Book your seats for an unforgettable experience</p>
+    <h1>HELP Auditorium</h1>
+    <p class="subtitle">Seat Layout Map</p>
   </header>
 
   <div class="picture">
@@ -24,7 +24,7 @@
       <div class="seating-container">
         <div *ngFor="let section of sections; let i = index">
           <div class="seating-area" *ngIf="i === currentSectionIndex">
-            <div class="area-label">{{ section.name }}</div>
+            <div class="area-label">{{ section.name +" ("+  section.seatType + ")"}}</div>
             <div class="seating-row" *ngFor="let row of section.seatRows">
               <div class="row-indicator">{{ $any(row).rowLetter }}</div>
               <div
@@ -36,7 +36,7 @@
                 (click)="selectSeat(seat)"
                 *ngFor="let seat of row"
               >
-                <span class="seat-price" *ngIf="seat.seatType === 'VIP'">${{ seat.price }}</span>
+               
                 {{ seat.number.split('-')[1] }}
               </div>
               <div class="row-indicator">{{ $any(row).rowLetter }}</div>
@@ -46,10 +46,7 @@
       </div>
 
       <div class="legend">
-        <div class="legend-item">
-          <div class="legend-color vip-color"></div>
-          <span>VIP</span>
-        </div>
+        
         <div class="legend-item">
           <div class="legend-color available-color"></div>
           <span>Available</span>

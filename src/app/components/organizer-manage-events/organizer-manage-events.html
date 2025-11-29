@@ -12,6 +12,8 @@
         [location]="event.location"
         [ticketsLeft]="event.ticketsLeft"
         [status]="event.status"
+        [viewMode]="'organizer'"
+        (view)="book(event)"
       
       ></app-event-cards>
     </div>

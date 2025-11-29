@@ -8,13 +8,13 @@ export class GenerateSeatsService {
 
   generateSeats(): any[] {
     const sections = [
-      { name: 'Left Foyer', prefix: 'LF', seatType: 'regular' },
+      { name: 'Left Foyer', prefix: 'LF', seatType: 'REGULAR' },
       { name: 'Middle Foyer', prefix: 'MF', seatType: 'VIP' },
-      { name: 'Right Foyer', prefix: 'RF', seatType: 'senior' },
+      { name: 'Right Foyer', prefix: 'RF', seatType: 'SENIOR' },
 
-      { name: 'Left Balcony', prefix: 'LB', seatType: 'children' },
-      { name: 'Middle Balcony', prefix: 'MB', seatType: 'regular' },
-      { name: 'Right Balcony', prefix: 'RB', seatType: 'children' },
+      { name: 'Left Balcony', prefix: 'LB', seatType: 'CHILDREN' },
+      { name: 'Middle Balcony', prefix: 'MB', seatType: 'REGULAR' },
+      { name: 'Right Balcony', prefix: 'RB', seatType: 'CHILDREN' },
     ];
 
     const rightFoyerLayout = {
@@ -78,7 +78,7 @@ export class GenerateSeatsService {
               section: section.name,
               selected: false,
               occupied: Math.random() > 0.8,
-              seatType: 'senior',
+              seatType: 'SENIOR',
               price: seniorPrice,
             });
           }
@@ -116,7 +116,7 @@ export class GenerateSeatsService {
               section: section.name,
               selected: false,
               occupied: Math.random() > 0.8,
-              seatType: 'regular',
+              seatType: 'REGULAR',
               price: regularPrice,
             });
           }
@@ -135,7 +135,7 @@ export class GenerateSeatsService {
               section: section.name,
               selected: false,
               occupied: Math.random() > 0.8,
-              seatType: 'regular',
+              seatType: 'REGULAR',
               price: regularPrice,
             });
           }
@@ -153,7 +153,7 @@ export class GenerateSeatsService {
               section: section.name,
               selected: false,
               occupied: Math.random() > 0.8,
-              seatType: 'children',
+              seatType: 'CHILDREN',
               price: childrenPrice,
             });
           }
@@ -173,7 +173,7 @@ export class GenerateSeatsService {
               section: section.name,
               selected: false,
               occupied: Math.random() > 0.8,
-              seatType: 'children',
+              seatType: 'CHILDREN',
               price: childrenPrice,
             });
           }

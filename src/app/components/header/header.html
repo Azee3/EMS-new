@@ -30,7 +30,7 @@
             [routerLink]="
               currentUser?.role === 'admin'
                 ? '/admin'
-                : currentUser?.role === 'organizer'
+                : currentUser?.role === 'organizer' && currentUser?.isFirstLogin === false
                 ? '/organizer'
                 : '/'
             "
