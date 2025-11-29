@@ -1,10 +1,13 @@
 <div class="container mt-4">
   
   <h2>Review Your Booking</h2>
+  <hr class="my-4" />
+
+
   <div *ngIf="bookingDetails; else noBooking">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Booking Summary</h5>
+        <h5 class="card-header">Booking Summary</h5>
         <p><strong>Event:</strong> {{ bookingDetails.eventName }}</p>
         <p><strong>Seats:</strong> {{ bookingDetails.seatNumbers.join(', ') }}</p>
         <p><strong>Ticket Type:</strong> {{ bookingDetails.ticketType || 'General' }}</p>

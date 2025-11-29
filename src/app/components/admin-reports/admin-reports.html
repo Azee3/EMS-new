@@ -4,19 +4,37 @@
   <h1 class="dashboard-title">Analytics Reports</h1>
 </div>
 
+<hr class="my-4" />
+
+<button class="back-btn" routerLink="/admin">
+  <i class="fas fa-arrow-left"></i> Back to Dashboard
+</button>
+
 <div class="time-filter">
-    <div class="time-options">
-      <button class="time-option" [class.active]="activeFilter === 'last7days'" (click)="setFilter('last7days')">
-        Last 7 Days
-      </button>
-      <button class="time-option" [class.active]="activeFilter === 'last30days'" (click)="setFilter('last30days')">
-        Last 30 Days
-      </button>
-      <button class="time-option" [class.active]="activeFilter === 'allTime'" (click)="setFilter('allTime')">
-        All Time
-      </button>
-    </div>
+  <div class="time-options">
+    <button
+      class="time-option"
+      [class.active]="activeFilter === 'last7days'"
+      (click)="setFilter('last7days')"
+    >
+      Last 7 Days
+    </button>
+    <button
+      class="time-option"
+      [class.active]="activeFilter === 'last30days'"
+      (click)="setFilter('last30days')"
+    >
+      Last 30 Days
+    </button>
+    <button
+      class="time-option"
+      [class.active]="activeFilter === 'allTime'"
+      (click)="setFilter('allTime')"
+    >
+      All Time
+    </button>
   </div>
+</div>
 
 <!-- Reports Grid -->
 <div class="reports-grid">

@@ -1,3 +1,19 @@
+.back-btn {
+  background: var(--light);
+  color: var(--dark);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 24px;
+}
+
+.back-btn:hover {
+  background: #e6dddd;
+}
+
 .card {
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -8,6 +24,8 @@
   align-items: center;
   
 }
+
+
 
 .card-header {
   font-size: 1.5em;

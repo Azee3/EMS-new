@@ -1,14 +1,32 @@
 <!-- Main Content - Dashboard -->
-<div class="main-content" id="dashboard-page" >
+<div class="main-content" id="dashboard-page">
   <div class="header">
     <h1 class="dashboard-title">Admin Dashboard</h1>
   </div>
 
   <div class="time-filter">
     <div class="time-options">
-      <div class="time-option" [ngClass]="{'active': selectedPeriod === '7d'}" (click)="setPeriod('7d')">Last 7 Days</div>
-      <div class="time-option" [ngClass]="{'active': selectedPeriod === '30d'}" (click)="setPeriod('30d')">Last 30 Days</div>
-      <div class="time-option" [ngClass]="{'active': selectedPeriod === '90d'}" (click)="setPeriod('90d')">Last 3 Months</div>
+      <div
+        class="time-option"
+        [ngClass]="{ active: selectedPeriod === '7d' }"
+        (click)="setPeriod('7d')"
+      >
+        Last 7 Days
+      </div>
+      <div
+        class="time-option"
+        [ngClass]="{ active: selectedPeriod === '30d' }"
+        (click)="setPeriod('30d')"
+      >
+        Last 30 Days
+      </div>
+      <div
+        class="time-option"
+        [ngClass]="{ active: selectedPeriod === '90d' }"
+        (click)="setPeriod('90d')"
+      >
+        Last 3 Months
+      </div>
     </div>
   </div>
 
@@ -70,7 +88,7 @@
       <div class="action-icon">
         <i class="fas fa-user-plus"></i>
       </div>
-      <div class="action-text">Register Organizer</div>
+      <div class="action-text">Manage Organizer</div>
     </a>
 
     <a routerLink="/view-events" routerLinkActive="active" class="action-btn">
@@ -116,9 +134,11 @@
     </div>
     <div class="event-list">
       <div class="event-list-item">
-        <div class="activity-icon red">
-          <i class="fas fa-star"></i>
+        <div class="event-date">
+          <div class="event-day">22</div>
+          <div class="event-month">Oct</div>
         </div>
+
         <div class="event-content">
           <div class="event-name">{{ bestPerformingEvents.eventName }}</div>
           <div class="event-organizer">
@@ -128,6 +148,4 @@
       </div>
     </div>
   </div>
-
-  
 </div>

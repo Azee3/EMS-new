@@ -3,7 +3,7 @@
   <div *ngIf="ticketDetails; else noTicket">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Your Ticket</h5>
+        <h5 class="card-header">Your Ticket</h5>
         <p><strong>Event:</strong> {{ ticketDetails.eventName }}</p>
         <p><strong>Seats:</strong> {{ ticketDetails.seatNumbers.join(', ') }}</p>
         <p><strong>Ticket Type:</strong> {{ ticketDetails.ticketType }}</p>

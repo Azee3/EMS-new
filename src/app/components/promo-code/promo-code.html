@@ -1,20 +1,25 @@
 <div class="container mt-4">
-  <h2>Apply Promo Code</h2>
-  <div class="form-group">
-    <label for="promoCode">Promo Code:</label>
-    <input type="text" id="promoCode" class="form-control" [(ngModel)]="promoCode">
-  </div>
-  <button class="btn btn-primary mt-3" (click)="applyPromoCode()">Apply</button>
+  <h2 class="page-title">Apply Promo Code</h2>
+  <div class="card">
+    
+    <div class="form-group">
+      <label class="input-type" for="promoCode">Promo Code:</label>
+      <input type="text" id="promoCode" class="form-control" [(ngModel)]="promoCode" />
+    </div>
+    <button class="btn btn-secondary mt-3" (click)="applyPromoCode()">Apply</button>
 
-  <div class="mt-4" *ngIf="discount > 0">
-    <p class="text-success">Promo code applied successfully!</p>
-    <p><strong>Discount:</strong> {{ discount | currency }}</p>
-  </div>
+    <div class="mt-4" *ngIf="discount > 0">
+      <p class="text-success">Promo code applied successfully!</p>
+      <p><strong>Discount:</strong> {{ discount | currency }}</p>
+    </div>
 
-  <div class="mt-4">
-    <p><strong>Subtotal:</strong> {{ totalPrice | currency }}</p>
-    <p><strong>Final Price:</strong> {{ finalPrice | currency }}</p>
-  </div>
+    <div class="mt-4">
+      <p><strong>Subtotal:</strong> {{ totalPrice | currency }}</p>
+      <p><strong>Final Price:</strong> {{ finalPrice | currency }}</p>
+    </div>
 
-  <button class="btn btn-primary mt-3" (click)="continueToReview()">Review Booking</button>
+    <hr class="my-4" />
+
+    <button class="btn btn-primary mt-3" (click)="continueToReview()">Review Booking</button>
+  </div>
 </div>

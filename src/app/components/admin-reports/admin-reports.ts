@@ -1,11 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-reports',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './admin-reports.html',
   styleUrls: ['./admin-reports.css'],
 })

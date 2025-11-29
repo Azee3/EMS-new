@@ -68,7 +68,8 @@ body {
 
 .event-name {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  font-size: large;
 }
 
 .event-date {
@@ -437,4 +438,26 @@ body {
 
 .back-to-dashboard:hover {
   background: #1a252f;
+}
+
+.event-date {
+  background: #b70122;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 80px;
+  margin-left : 24px;
+  margin-right : 24px;
+}
+
+.event-day {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.event-month {
+  font-size: 0.8rem;
+  text-transform: uppercase;
 }
