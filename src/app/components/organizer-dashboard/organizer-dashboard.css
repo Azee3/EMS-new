@@ -330,7 +330,7 @@ body {
   resize: vertical;
 }
 
-.form-row {
+.form-.form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -404,6 +404,55 @@ body {
   color: #666;
 }
 
+/* Time Filter */
+.time-filter {
+  display: flex;
+  gap: 10px;
+}
+
+.time-filter button {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.time-filter button:hover {
+  background: #e0e0e0;
+}
+
+.time-filter button.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Charts Section */
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.chart-container h3 {
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--secondary);
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
   .main-content {
@@ -429,6 +478,10 @@ body {
   }
   
   .ticket-details {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-section {
     grid-template-columns: 1fr;
   }
 }

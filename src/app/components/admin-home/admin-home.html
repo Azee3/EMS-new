@@ -1,7 +1,15 @@
 <!-- Main Content - Dashboard -->
-<div class="main-content" id="dashboard-page" *ngIf="dashboardStats">
+<div class="main-content" id="dashboard-page" >
   <div class="header">
     <h1 class="dashboard-title">Admin Dashboard</h1>
+  </div>
+
+  <div class="time-filter">
+    <div class="time-options">
+      <div class="time-option" [ngClass]="{'active': selectedPeriod === '7d'}" (click)="setPeriod('7d')">Last 7 Days</div>
+      <div class="time-option" [ngClass]="{'active': selectedPeriod === '30d'}" (click)="setPeriod('30d')">Last 30 Days</div>
+      <div class="time-option" [ngClass]="{'active': selectedPeriod === '90d'}" (click)="setPeriod('90d')">Last 3 Months</div>
+    </div>
   </div>
 
   <!-- Dashboard Cards -->

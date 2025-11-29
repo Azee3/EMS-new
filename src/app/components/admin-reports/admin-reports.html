@@ -2,7 +2,13 @@
 <div class="main-content reports-page">
   <div class="reports-header">
     <h1 class="dashboard-title">Analytics Reports</h1>
+    <div class="time-filter">
+      <button [class.active]="activeFilter === 'last7days'" (click)="setFilter('last7days')">Last 7 Days</button>
+      <button [class.active]="activeFilter === 'last30days'" (click)="setFilter('last30days')">Last 30 Days</button>
+      <button [class.active]="activeFilter === 'allTime'" (click)="setFilter('allTime')">All Time</button>
+    </div>
   </div>
+
 
   <!-- Reports Grid -->
   <div class="reports-grid">
@@ -11,7 +17,9 @@
       <div class="report-card-header">
         <div class="report-card-title">Event Occupancy Report</div>
         <div class="report-card-actions">
-          <button class="report-action-btn" (click)="exportToPdf('eventOccupancy')"><i class="fas fa-download"></i> PDF</button>
+          <button class="report-action-btn" (click)="exportToPdf('eventOccupancy')">
+            <i class="fas fa-download"></i> PDF
+          </button>
         </div>
       </div>
       <div class="report-chart">
@@ -24,7 +32,9 @@
       <div class="report-card-header">
         <div class="report-card-title">Ticket Sales Summary</div>
         <div class="report-card-actions">
-          <button class="report-action-btn" (click)="exportToPdf('ticketSalesSummary')"><i class="fas fa-download"></i> PDF</button>
+          <button class="report-action-btn" (click)="exportToPdf('ticketSalesSummary')">
+            <i class="fas fa-download"></i> PDF
+          </button>
         </div>
       </div>
       <div class="report-chart">
@@ -40,12 +50,12 @@
           <div class="summary-label">Total Revenue</div>
         </div>
         <div class="summary-item">
-            <div class="summary-value">{{ ticketSalesSummary.highestSellingEvent.eventName }}</div>
-            <div class="summary-label">Top Event</div>
+          <div class="summary-value">{{ ticketSalesSummary.highestSellingEvent.eventName }}</div>
+          <div class="summary-label">Top Event</div>
         </div>
         <div class="summary-item">
-            <div class="summary-value">{{ ticketSalesSummary.lowestPerformingEvent.eventName }}</div>
-            <div class="summary-label">Lowest Event</div>
+          <div class="summary-value">{{ ticketSalesSummary.lowestPerformingEvent.eventName }}</div>
+          <div class="summary-label">Lowest Event</div>
         </div>
       </div>
     </div>
@@ -55,7 +65,9 @@
       <div class="report-card-header">
         <div class="report-card-title">Revenue Trend Report</div>
         <div class="report-card-actions">
-          <button class="report-action-btn" (click)="exportToPdf('paymentSummary')"><i class="fas fa-download"></i> PDF</button>
+          <button class="report-action-btn" (click)="exportToPdf('paymentSummary')">
+            <i class="fas fa-download"></i> PDF
+          </button>
         </div>
       </div>
       <div class="report-chart">
@@ -63,80 +75,86 @@
       </div>
       <div class="report-summary">
         <div class="summary-item">
-            <div class="summary-value">{{ paymentSummary.totalRevenue | currency }}</div>
-            <div class="summary-label">Total Revenue</div>
+          <div class="summary-value">{{ paymentSummary.totalRevenue | currency }}</div>
+          <div class="summary-label">Total Revenue</div>
         </div>
         <div class="summary-item">
-            <div class="summary-value">{{ paymentSummary.successfulPayments }}</div>
-            <div class="summary-label">Successful Payments</div>
+          <div class="summary-value">{{ paymentSummary.successfulPayments }}</div>
+          <div class="summary-label">Successful Payments</div>
         </div>
       </div>
     </div>
 
     <!-- Auditorium Usage Report -->
     <div class="report-card" *ngIf="auditoriumUsage">
-        <div class="report-card-header">
-            <div class="report-card-title">Auditorium Usage Report</div>
-            <div class="report-card-actions">
-                <button class="report-action-btn" (click)="exportToPdf('auditoriumUsage')"><i class="fas fa-download"></i> PDF</button>
-            </div>
+      <div class="report-card-header">
+        <div class="report-card-title">Auditorium Usage Report</div>
+        <div class="report-card-actions">
+          <button class="report-action-btn" (click)="exportToPdf('auditoriumUsage')">
+            <i class="fas fa-download"></i> PDF
+          </button>
         </div>
-        <div class="report-summary">
-            <div class="summary-item">
-                <div class="summary-value">{{ auditoriumUsage.usageFrequency }}</div>
-                <div class="summary-label">Usage Frequency</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-value">{{ auditoriumUsage.bookedDays }}</div>
-                <div class="summary-label">Booked Days</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-value">{{ auditoriumUsage.freeDays }}</div>
-                <div class="summary-label">Free Days</div>
-            </div>
+      </div>
+      <div class="report-summary">
+        <div class="summary-item">
+          <div class="summary-value">{{ auditoriumUsage.usageFrequency }}</div>
+          <div class="summary-label">Usage Frequency</div>
         </div>
+        <div class="summary-item">
+          <div class="summary-value">{{ auditoriumUsage.bookedDays }}</div>
+          <div class="summary-label">Booked Days</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value">{{ auditoriumUsage.freeDays }}</div>
+          <div class="summary-label">Free Days</div>
+        </div>
+      </div>
     </div>
 
     <!-- Organizer Performance Report -->
     <div class="report-card" *ngIf="organizerPerformance">
-        <div class="report-card-header">
-            <div class="report-card-title">Organizer Performance</div>
-            <div class="report-card-actions">
-                <button class="report-action-btn" (click)="exportToPdf('organizerPerformance')"><i class="fas fa-download"></i> PDF</button>
-            </div>
+      <div class="report-card-header">
+        <div class="report-card-title">Organizer Performance</div>
+        <div class="report-card-actions">
+          <button class="report-action-btn" (click)="exportToPdf('organizerPerformance')">
+            <i class="fas fa-download"></i> PDF
+          </button>
         </div>
-        <div class="report-summary" *ngFor="let organizer of organizerPerformance">
-            <div class="summary-item">
-                <div class="summary-value">{{ organizer.eventsCreated }}</div>
-                <div class="summary-label">{{ organizer.organizerName }}</div>
-            </div>
+      </div>
+      <div class="report-summary" *ngFor="let organizer of organizerPerformance">
+        <div class="summary-item">
+          <div class="summary-value">{{ organizer.eventsCreated }}</div>
+          <div class="summary-label">{{ organizer.organizerName }}</div>
         </div>
+      </div>
     </div>
 
     <!-- Waitlist Overview Report -->
     <div class="report-card" *ngIf="waitlistOverview">
-        <div class="report-card-header">
-            <div class="report-card-title">Waitlist Overview</div>
-            <div class="report-card-actions">
-                <button class="report-action-btn" (click)="exportToPdf('waitlistOverview')"><i class="fas fa-download"></i> PDF</button>
-            </div>
+      <div class="report-card-header">
+        <div class="report-card-title">Waitlist Overview</div>
+        <div class="report-card-actions">
+          <button class="report-action-btn" (click)="exportToPdf('waitlistOverview')">
+            <i class="fas fa-download"></i> PDF
+          </button>
         </div>
-        <div class="report-summary">
-            <div class="summary-item">
-                <div class="summary-value">{{ waitlistOverview.eventsWithWaitlists }}</div>
-                <div class="summary-label">Events w/ Waitlists</div>
-            </div>
-             <div class="summary-item">
-                <div class="summary-value">{{ waitlistOverview.totalWaitlistEntries }}</div>
-                <div class="summary-label">Total on Waitlists</div>
-            </div>
-             <div class="summary-item">
-                <div class="summary-value">{{ waitlistOverview.attendeesStillWaiting }}</div>
-                <div class="summary-label">Attendees Waiting</div>
-            </div>
+      </div>
+      <div class="report-summary">
+        <div class="summary-item">
+          <div class="summary-value">{{ waitlistOverview.eventsWithWaitlists }}</div>
+          <div class="summary-label">Events w/ Waitlists</div>
         </div>
+        <div class="summary-item">
+          <div class="summary-value">{{ waitlistOverview.totalWaitlistEntries }}</div>
+          <div class="summary-label">Total on Waitlists</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value">{{ waitlistOverview.attendeesStillWaiting }}</div>
+          <div class="summary-label">Attendees Waiting</div>
+        </div>
+      </div>
     </div>
 
-    <hr mt-4>
+    <hr mt-4 />
   </div>
 </div>

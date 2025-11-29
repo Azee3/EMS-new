@@ -1,8 +1,12 @@
 <div class="main-content">
-  <!-- Dashboard Page -->
-  <div class="page-section" *ngIf="currentPage === 'dashboard'">
+  <div class="page-section">
     <div class="header">
       <h1>Organizer Dashboard</h1>
+      <div class="time-filter">
+        <button [class.active]="activeFilter === 'last7days'" (click)="setFilter('last7days')">Last 7 Days</button>
+        <button [class.active]="activeFilter === 'last30days'" (click)="setFilter('last30days')">Last 30 Days</button>
+        <button [class.active]="activeFilter === 'allTime'" (click)="setFilter('allTime')">All Time</button>
+      </div>
     </div>
 
     <!-- Dashboard Cards -->
@@ -10,337 +14,104 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">Active Events</div>
-          <div class="card-icon red">
-            <i class="fas fa-calendar-alt"></i>
-          </div>
+          <div class="card-icon red"><i class="fas fa-calendar-alt"></i></div>
         </div>
-        <div class="card-value">8</div>
-        <div class="card-footer">3 events this month</div>
+        <div class="card-value">{{ summaryData.activeEvents.value }}</div>
+        <div class="card-footer">{{ summaryData.activeEvents.footer }}</div>
       </div>
       
       <div class="card">
         <div class="card-header">
           <div class="card-title">Tickets Sold</div>
-          <div class="card-icon red">
-            <i class="fas fa-ticket-alt"></i>
-          </div>
+          <div class="card-icon red"><i class="fas fa-ticket-alt"></i></div>
         </div>
-        <div class="card-value">1,248</div>
-        <div class="card-footer">+124 this week</div>
+        <div class="card-value">{{ summaryData.ticketsSold.value }}</div>
+        <div class="card-footer">{{ summaryData.ticketsSold.footer }}</div>
       </div>
       
       <div class="card">
         <div class="card-header">
           <div class="card-title">Total Revenue</div>
-          <div class="card-icon red">
-            <i class="fas fa-dollar-sign"></i>
-          </div>
+          <div class="card-icon red"><i class="fas fa-dollar-sign"></i></div>
         </div>
-        <div class="card-value">$24,580</div>
-        <div class="card-footer">+$2,450 this month</div>
+        <div class="card-value">{{ summaryData.totalRevenue.value }}</div>
+        <div class="card-footer">{{ summaryData.totalRevenue.footer }}</div>
       </div>
       
       <div class="card">
         <div class="card-header">
           <div class="card-title">Avg. Occupancy</div>
-          <div class="card-icon red">
-            <i class="fas fa-users"></i>
-          </div>
+          <div class="card-icon red"><i class="fas fa-users"></i></div>
         </div>
-        <div class="card-value">84%</div>
-        <div class="card-footer">+5% from last month</div>
+        <div class="card-value">{{ summaryData.avgOccupancy.value }}</div>
+        <div class="card-footer">{{ summaryData.avgOccupancy.footer }}</div>
       </div>
     </div>
 
     <!-- Quick Actions -->
     <div class="quick-actions">
       <div class="action-btn" routerLink="/organizer/create-event">
-        <div class="action-icon">
-          <i class="fas fa-plus-circle"></i>
-        </div>
+        <div class="action-icon"><i class="fas fa-plus-circle"></i></div>
         <div class="action-text">Create New Event</div>
       </div>
-      
       <div class="action-btn" routerLink="/organizer/manage-events">
-        <div class="action-icon">
-          <i class="fas fa-calendar-alt"></i>
-        </div>
+        <div class="action-icon"><i class="fas fa-calendar-alt"></i></div>
         <div class="action-text">Manage Events</div>
       </div>
-      
       <div class="action-btn" routerLink='/organizer/setup-tickets'>
-        <div class="action-icon">
-          <i class="fas fa-ticket-alt"></i>
-        </div>
+        <div class="action-icon"><i class="fas fa-ticket-alt"></i></div>
         <div class="action-text">Setup Tickets</div>
       </div>
-      
       <div class="action-btn" routerLink="/organizer/view-reports">
-        <div class="action-icon">
-          <i class="fas fa-chart-bar"></i>
-        </div>
+        <div class="action-icon"><i class="fas fa-chart-bar"></i></div>
         <div class="action-text">View Reports</div>
       </div>
-
       <div class="action-btn" routerLink="/scan-qr">
-        <div class="action-icon">
-          <i class="fa-solid fa-qrcode"></i>
-        </div>
+        <div class="action-icon"><i class="fa-solid fa-qrcode"></i></div>
         <div class="action-text">Scan Qr</div>
       </div>
-
     </div>
 
-    
+    <!-- Charts -->
+    <div class="charts-section">
+      <div class="chart-container">
+        <h3>Ticket Sales Trend</h3>
+        <canvas id="sales-chart"></canvas>
+      </div>
+      <div class="chart-container">
+        <h3>Revenue Growth</h3>
+        <canvas id="revenue-chart"></canvas>
+      </div>
+      <div class="chart-container">
+        <h3>Average Occupancy Rate</h3>
+        <canvas id="occupancy-chart"></canvas>
+      </div>
+    </div>
 
     <!-- Upcoming Events -->
     <div class="upcoming-events">
       <div class="header">
         <h2>Upcoming Events</h2>
-        <a href="#" style="color: var(--primary); text-decoration: none;">View All</a>
+        <a routerLink="/organizer/manage-events" style="color: var(--primary); text-decoration: none;">View All</a>
       </div>
       <div class="event-list">
+        <!-- This would be populated by a loop in a real application -->
         <div class="event-item">
-          <div class="event-date">
-            <div class="event-day">15</div>
-            <div class="event-month">Oct</div>
-          </div>
+          <div class="event-date"><div class="event-day">15</div><div class="event-month">Oct</div></div>
           <div class="event-details">
             <div class="event-name">Comic Con 2024</div>
             <div class="event-time">10:00 AM - 6:00 PM • Main Auditorium</div>
-            <div class="event-tickets">
-              <div class="ticket-count"><span class="sold">842</span> sold • <span class="available">158</span> available</div>
-            </div>
+            <div class="event-tickets"><div class="ticket-count"><span class="sold">842</span> sold • <span class="available">158</span> available</div></div>
           </div>
         </div>
-        
         <div class="event-item">
-          <div class="event-date">
-            <div class="event-day">22</div>
-            <div class="event-month">Oct</div>
-          </div>
+          <div class="event-date"><div class="event-day">22</div><div class="event-month">Oct</div></div>
           <div class="event-details">
             <div class="event-name">Anime Festival</div>
             <div class="event-time">11:00 AM - 8:00 PM • Main Auditorium</div>
-            <div class="event-tickets">
-              <div class="ticket-count"><span class="sold">524</span> sold • <span class="available">476</span> available</div>
-            </div>
+            <div class="event-tickets"><div class="ticket-count"><span class="sold">524</span> sold • <span class="available">476</span> available</div></div>
           </div>
         </div>
-        
-        <div class="event-item">
-          <div class="event-date">
-            <div class="event-day">05</div>
-            <div class="event-month">Nov</div>
-          </div>
-          <div class="event-details">
-            <div class="event-name">Tech Conference</div>
-            <div class="event-time">9:00 AM - 5:00 PM • Conference Hall</div>
-            <div class="event-tickets">
-              <div class="ticket-count"><span class="sold">312</span> sold • <span class="available">188</span> available</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Create Event Page -->
-  <div class="page-section" *ngIf="currentPage === 'create-event'">
-    <div class="header">
-      <h1>Create New Event</h1>
-      <button class="back-btn" (click)="showPage('dashboard')">
-        <i class="fas fa-arrow-left"></i> Back to Dashboard
-      </button>
-    </div>
-
-    <div class="form-container">
-      <form (ngSubmit)="onEventSubmit()">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="event-name">Event Name *</label>
-            <input type="text" id="event-name" placeholder="Enter event name" required>
-          </div>
-          <div class="form-group">
-            <label for="event-category">Event Category *</label>
-            <select id="event-category" required>
-              <option value="">Select category</option>
-              <option value="concert">Concert</option>
-              <option value="conference">Conference</option>
-              <option value="workshop">Workshop</option>
-              <option value="festival">Festival</option>
-              <option value="exhibition">Exhibition</option>
-            </select>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label for="event-date">Event Date *</label>
-            <input type="date" id="event-date" required>
-          </div>
-          <div class="form-group">
-            <label for="event-time">Event Time *</label>
-            <input type="time" id="event-time" required>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="event-description">Event Description</label>
-          <textarea id="event-description" placeholder="Describe your event..."></textarea>
-        </div>
-        
-        <div class="form-group">
-          <label for="event-poster">Event Poster (Optional)</label>
-          <input type="file" id="event-poster" accept="image/*">
-        </div>
-        
-        <button type="submit" class="submit-btn">Create Event</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Ticket Setup Page -->
-  <div class="page-section" *ngIf="currentPage === 'tickets'">
-    <div class="header">
-      <h1>Ticket Setup</h1>
-      <button class="back-btn" (click)="showPage('dashboard')">
-        <i class="fas fa-arrow-left"></i> Back to Dashboard
-      </button>
-    </div>
-
-    <div class="form-container">
-      <h3>Define Ticket Types for: <span style="color: var(--primary);">Comic Con 2024</span></h3>
-      
-      <div class="ticket-types">
-        <div class="ticket-type">
-          <div class="ticket-header">
-            <div class="ticket-name">General Admission</div>
-            <div class="ticket-price">$25.00</div>
-          </div>
-          <div class="ticket-details">
-            <div>Available: 500</div>
-            <div>Sold: 342</div>
-            <div>Max per order: 6</div>
-            <div>Status: Active</div>
-          </div>
-        </div>
-        
-        <div class="ticket-type">
-          <div class="ticket-header">
-            <div class="ticket-name">VIP Pass</div>
-            <div class="ticket-price">$75.00</div>
-          </div>
-          <div class="ticket-details">
-            <div>Available: 100</div>
-            <div>Sold: 78</div>
-            <div>Max per order: 4</div>
-            <div>Status: Active</div>
-          </div>
-        </div>
-        
-        <div class="ticket-type">
-          <div class="ticket-header">
-            <div class="ticket-name">Senior Citizen</div>
-            <div class="ticket-price">$15.00</div>
-          </div>
-          <div class="ticket-details">
-            <div>Available: 50</div>
-            <div>Sold: 32</div>
-            <div>Max per order: 2</div>
-            <div>Status: Active</div>
-          </div>
-        </div>
-      </div>
-      
-      <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-        <h3>Create Promotional Code</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="promo-code">Promo Code</label>
-            <input type="text" id="promo-code" placeholder="e.g., EARLYBIRD20">
-          </div>
-          <div class="form-group">
-            <label for="discount-type">Discount Type</label>
-            <select id="discount-type">
-              <option value="percentage">Percentage</option>
-              <option value="fixed">Fixed Amount</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="discount-value">Discount Value</label>
-            <input type="number" id="discount-value" placeholder="e.g., 20">
-          </div>
-          <div class="form-group">
-            <label for="expiry-date">Expiry Date</label>
-            <input type="date" id="expiry-date">
-          </div>
-        </div>
-        <button type="button" class="submit-btn">Create Promo Code</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Analytics Page -->
-  <div class="page-section" *ngIf="currentPage === 'reports'">
-    <div class="header">
-      <h1>Analytics Reports</h1>
-      <button class="back-btn" (click)="showPage('dashboard')">
-        <i class="fas fa-arrow-left"></i> Back to Dashboard
-      </button>
-    </div>
-
-    <div class="dashboard-cards">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Ticket Sales</div>
-          <div class="card-icon red">
-            <i class="fas fa-chart-line"></i>
-          </div>
-        </div>
-        <div class="card-value">1,248</div>
-        <div class="card-footer">Last 30 days</div>
-      </div>
-      
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Revenue</div>
-          <div class="card-icon red">
-            <i class="fas fa-dollar-sign"></i>
-          </div>
-        </div>
-        <div class="card-value">$24,580</div>
-        <div class="card-footer">Last 30 days</div>
-      </div>
-      
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Seat Occupancy</div>
-          <div class="card-icon red">
-            <i class="fas fa-users"></i>
-          </div>
-        </div>
-        <div class="card-value">84%</div>
-        <div class="card-footer">Average rate</div>
-      </div>
-    </div>
-
-    <div class="upcoming-events">
-      <h3>Export Reports</h3>
-      <div class="quick-actions">
-        <div class="action-btn">
-          <div class="action-icon">
-            <i class="fas fa-file-pdf"></i>
-          </div>
-          <div class="action-text">Download PDF Report</div>
-        </div>
-        
-        
-        
-        
       </div>
     </div>
   </div>

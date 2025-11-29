@@ -153,3 +153,29 @@
 .back-to-dashboard:hover {
   background: #1a252f;
 }
+
+/* Time Filter */
+.time-filter {
+  display: flex;
+  gap: 10px;
+}
+
+.time-filter button {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.time-filter button:hover {
+  background: #e0e0e0;
+}
+
+.time-filter button.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
