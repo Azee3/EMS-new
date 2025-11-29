@@ -13,6 +13,9 @@ export class AttendeeGuard implements CanActivate {
     if (user && user.role === 'admin') {
       return this.router.createUrlTree(['/admin']);
     }
+    if (user && user.role === 'organizer') {
+      return this.router.createUrlTree(['/organaizer']);
+    }
     // otherwise go to home or login
     return this.router.createUrlTree(['/']);
   }

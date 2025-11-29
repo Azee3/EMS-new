@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-organizer-manage-events',
-  imports: [CommonModule, RouterLink, EventCards],
+  imports: [CommonModule, EventCards],
   templateUrl: './organizer-manage-events.html',
   styleUrl: './organizer-manage-events.css',
 })
