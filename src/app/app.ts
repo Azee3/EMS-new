@@ -1,9 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/header/header';
-import { FooterComponent } from './components/footer/footer';
+import { HeaderComponent } from './components/layout/header/header';
+import { FooterComponent } from './components/layout/footer/footer';
 import { AuthService } from './services/auth.service';
-import { ScanQrComponent } from './components/scan-qr/scan-qr';
+import { ScanQrComponent } from './components/shared/scan-qr/scan-qr';
 import { CommonModule } from '@angular/common';
 
 @Component({

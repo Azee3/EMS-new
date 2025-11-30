@@ -1,0 +1,61 @@
+.back-btn {
+  background: #ecf0f1;
+  color: #34495e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 24px;
+}
+
+.back-btn:hover {
+  background: #e6dddd;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  
+}
+
+
+
+.card-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 12px;
+  background-color: White;
+  color: #333;
+  text-align: center;
+  width: 100%;
+}
+
+.form-control {
+  width: 500px;
+}
+
+.btn-primary {
+  flex: center;
+  display: inline-block;
+  background-color: #b70122;
+  border-color: #b70122; ;
+}
+
+.list-title{
+  align-items: center;
+}
+
+.list-group-item {
+  width: 750px;
+}
+
+.btn-primary:active {
+  background-color: #db0101;
+}

@@ -1,0 +1,132 @@
+<!-- Create Event Page -->
+<div class="page-section">
+  <div class="header">
+    <h1>Create New Event</h1>
+    <hr class="my-4" />
+    <button class="back-btn" routerLink="/organizer">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </button>
+  </div>
+
+  <div class="form-container">
+    <form (ngSubmit)="onEventSubmit()">
+      <h4 class="section-title1">Event Details</h4>
+      <hr class="mt-4" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="event-name">Event Name *</label>
+          <input type="text" id="event-name" placeholder="Enter event name" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="event-date">Event Date *</label>
+          <input type="date" id="event-date" required />
+        </div>
+        <div class="form-group">
+          <label for="event-time">Event Time *</label>
+          <input type="time" id="event-time" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="event-description">Event Description</label>
+        <textarea id="event-description" placeholder="Describe your event..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="event-category">Event Category *</label>
+        <select id="event-category" required>
+          <option value="">Select category</option>
+          <option value="concert">Concert</option>
+          <option value="conference">Conference</option>
+          <option value="workshop">Workshop</option>
+          <option value="Children">Children</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="event-poster">Event Poster (Optional)</label>
+        <input type="file" id="event-poster" accept="image/*" />
+      </div>
+
+      <h4 class="section-title">Seat Setup Section</h4>
+      <hr class="mt-4" />
+
+      <div class="picture">
+        <img src="/assets/auditorium-layout.png" alt="Seating Chart" class="image" />
+      </div>
+
+      <div class="form-row3">
+        <div class="form-group">
+          <label for="event-category">Left Foyer *</label>
+          <select id="event-category" required>
+            <option value="">Select category</option>
+            <option value="Regular">Regular</option>
+            <option value="VIP">VIP</option>
+            <option value="Senior">Senior</option>
+            <option value="festival">Festival</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="event-category">Middle Foyer *</label>
+          <select id="event-category" required>
+            <option value="">Select category</option>
+            <option value="Regular">Regular</option>
+            <option value="VIP">VIP</option>
+            <option value="Senior">Senior</option>
+            <option value="Children">Children</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="event-category">Right Foyer *</label>
+          <select id="event-category" required>
+            <option value="">Select category</option>
+            <option value="Regular">Regular</option>
+            <option value="VIP">VIP</option>
+            <option value="Senior">Senior</option>
+            <option value="Children">Children</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row3">
+        <div class="form-group">
+          <label for="event-category">Left Balcony *</label>
+          <select id="event-category" required>
+            <option value="">Select category</option>
+            <option value="Regular">Regular</option>
+            <option value="VIP">VIP</option>
+            <option value="Senior">Senior</option>
+            <option value="festival">Festival</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="event-category">Middle Balcony *</label>
+          <select id="event-category" required>
+            <option value="">Select category</option>
+            <option value="Regular">Regular</option>
+            <option value="VIP">VIP</option>
+            <option value="Senior">Senior</option>
+            <option value="Children">Children</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="event-category">Right Balcony*</label>
+          <select id="event-category" required>
+            <option value="">Select category</option>
+            <option value="Regular">Regular</option>
+            <option value="VIP">VIP</option>
+            <option value="Senior">Senior</option>
+            <option value="Children">Children</option>
+          </select>
+        </div>
+      </div>
+
+      <hr class="mt-4" />
+      <button type="submit" class="submit-btn">Create Event</button>
+    </form>
+  </div>
+</div>

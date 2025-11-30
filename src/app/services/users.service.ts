@@ -1,11 +1,33 @@
 import { Injectable } from '@angular/core';
 import { MOCK_USERS } from '../models/mock-data';
+import { User } from '../models/user.model';
+
+export function toUser(stored: StoredUser): User {
+  if (!stored.role) {
+    throw new Error('Stored user has no role');
+  }
+  return {
+    userId: stored.id,
+    fullName: stored.fullName,
+    email: stored.email,
+    password: stored.password,
+    role: stored.role,
+    isFirstLogin: stored.isFirstLogin ?? false,
+    createdAt: new Date(stored.createdAt),
+    updatedAt: new Date(stored.updatedAt),
+    organizationName: stored.organizationName,
+  };
+}
+
+export function toUserOrNull(stored: StoredUser | undefined): User | null {
+  return stored ? toUser(stored) : null;
+}
 
 export interface StoredUser {
   id: string;
   fullName: string;
   email: string;
-  passwordHash: string;
+  password: string;
   status: 'active' | 'inactive' | 'pending';
   role?: 'admin' | 'organizer' | 'attendee';
   isFirstLogin?: boolean;
@@ -32,7 +54,7 @@ export class UsersService {
         id: u.userId,
         fullName: u.fullName,
         email: u.email,
-        passwordHash: u.passwordHash,
+        password: u.password,
         status: 'active',
         role: u.role,
         isFirstLogin: u.isFirstLogin ?? false,
@@ -80,7 +102,7 @@ export class UsersService {
     this.users = this.users.filter(u => u.id !== id);
   }
 
-  async register(payload: { fullName: string; email: string; passwordHash: string; role?: 'admin' | 'organizer' | 'attendee' }): Promise<StoredUser> {
+  async register(payload: { fullName: string; email: string; password: string; role?: 'admin' | 'organizer' | 'attendee' }): Promise<StoredUser> {
     const exists = this.users.some(u => u.email.toLowerCase() === payload.email.toLowerCase());
     if (exists) throw new Error('Email already registered');
     const now = new Date().toISOString();
@@ -88,7 +110,7 @@ export class UsersService {
       id: String(Date.now()),
       fullName: payload.fullName,
       email: payload.email,
-      passwordHash: payload.passwordHash,
+      password: payload.password,
       status: 'active',
       role: payload.role ?? 'attendee',
       createdAt: now,
@@ -98,7 +120,7 @@ export class UsersService {
     return user;
   }
 
-  async createOrganizer(payload: { fullName: string; email: string; organizationName?: string; passwordHash?: string; }): Promise<StoredUser> {
+  async createOrganizer(payload: { fullName: string; email: string; organizationName?: string; password?: string; }): Promise<StoredUser> {
     const exists = this.users.some(u => u.email.toLowerCase() === payload.email.toLowerCase());
     if (exists) throw new Error('Email already registered');
     const now = new Date().toISOString();
@@ -108,7 +130,7 @@ export class UsersService {
       id: 'org-' + Date.now(),
       fullName: payload.fullName,
       email: payload.email,
-      passwordHash: defaultHash,
+      password: defaultHash,
       status: 'active',
       role: 'organizer',
       isFirstLogin: true,
@@ -135,7 +157,7 @@ export class UsersService {
     const idx = this.users.findIndex(u => u.id === userId);
     if (idx === -1) throw new Error('User not found');
     const newHash = await this.hashPassword(newPlainPassword);
-    this.users[idx].passwordHash = newHash;
+    this.users[idx].password = newHash;
     this.users[idx].isFirstLogin = false;
     this.users[idx].updatedAt = new Date().toISOString();
     return this.users[idx];

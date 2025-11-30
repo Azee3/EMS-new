@@ -4,8 +4,9 @@ export interface User {
   email: string;
   role: 'admin' | 'organizer' | 'attendee';
   organizationName?: string;
-  passwordHash: string;
+  password: string;
   isFirstLogin: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
+

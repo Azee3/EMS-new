@@ -1,0 +1,43 @@
+<div class="main-background">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center">Edit Ticket Type</h3>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label class="form-label">Ticket Type Name</label>
+                <input class="form-control" formControlName="fullName" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input class="form-control" formControlName="email" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Max Quantity</label>
+                <input class="form-control" formControlName="organizationName" />
+              </div>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <div class="mb-3">
+              <button class="btn btn-success" type="submit" routerLink="/organizer/setup-tickets">
+                Save
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary ms-2"
+                routerLink="/organizer/setup-tickets"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

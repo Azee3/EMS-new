@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Waitlist } from '../models/waitlist.model';
-import { User } from './auth.service';
+import { User } from '../models/user.model';
 
 const WAITLIST_KEY = 'ticketing_waitlist_v1';
 

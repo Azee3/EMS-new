@@ -1,0 +1,141 @@
+<div class="main-content">
+  <div class="header">
+    <h1>Organizer Dashboard</h1>
+  </div>
+
+  <div class="time-filter">
+    <div class="time-options">
+      <button class="time-option" [class.active]="activeFilter === 'last7days'" (click)="setFilter('last7days')">
+        Last 7 Days
+      </button>
+      <button class="time-option" [class.active]="activeFilter === 'last30days'" (click)="setFilter('last30days')">
+        Last 30 Days
+      </button>
+      <button class="time-option" [class.active]="activeFilter === 'allTime'" (click)="setFilter('allTime')">
+        All Time
+      </button>
+    </div>
+  </div>
+
+  <!-- Dashboard Cards -->
+  <div class="dashboard-cards">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Active Events</div>
+        <div class="card-icon red"><i class="fas fa-calendar-alt"></i></div>
+      </div>
+      <div class="card-value">{{ summaryData.activeEvents.value }}</div>
+      <div class="card-footer">{{ summaryData.activeEvents.footer }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Tickets Sold</div>
+        <div class="card-icon red"><i class="fas fa-ticket-alt"></i></div>
+      </div>
+      <div class="card-value">{{ summaryData.ticketsSold.value }}</div>
+      <div class="card-footer">{{ summaryData.ticketsSold.footer }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Total Revenue</div>
+        <div class="card-icon red"><i class="fas fa-dollar-sign"></i></div>
+      </div>
+      <div class="card-value">{{ summaryData.totalRevenue.value }}</div>
+      <div class="card-footer">{{ summaryData.totalRevenue.footer }}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Avg. Occupancy</div>
+        <div class="card-icon red"><i class="fas fa-users"></i></div>
+      </div>
+      <div class="card-value">{{ summaryData.avgOccupancy.value }}</div>
+      <div class="card-footer">{{ summaryData.avgOccupancy.footer }}</div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <div class="action-btn" routerLink="/organizer/create-event">
+      <div class="action-icon"><i class="fas fa-plus-circle"></i></div>
+      <div class="action-text">Create New Event</div>
+    </div>
+    <div class="action-btn" routerLink="/view-events">
+      <div class="action-icon"><i class="fas fa-calendar-alt"></i></div>
+      <div class="action-text">Manage Events</div>
+    </div>
+    <div class="action-btn" routerLink="/organizer/setup-tickets">
+      <div class="action-icon"><i class="fas fa-ticket-alt"></i></div>
+      <div class="action-text">Setup Tickets</div>
+    </div>
+    <div class="action-btn" routerLink="/organizer/view-reports">
+      <div class="action-icon"><i class="fas fa-chart-bar"></i></div>
+      <div class="action-text">View Reports</div>
+    </div>
+    <div class="action-btn" routerLink="/scan-qr">
+      <div class="action-icon"><i class="fa-solid fa-qrcode"></i></div>
+      <div class="action-text">Scan Qr</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-section">
+    <div class="chart-container">
+      <h3>Ticket Sales Trend</h3>
+      <canvas id="sales-chart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Revenue Growth</h3>
+      <canvas id="revenue-chart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Average Occupancy Rate</h3>
+      <canvas id="occupancy-chart"></canvas>
+    </div>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="upcoming-events">
+    <div class="header">
+      <h2>Upcoming Events</h2>
+      <a routerLink="/organizer/manage-events" style="color: #b70122; text-decoration: none"
+        >View All</a
+      >
+    </div>
+    <div class="event-list">
+      <!-- This would be populated by a loop in a real application -->
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-day">15</div>
+          <div class="event-month">Oct</div>
+        </div>
+        <div class="event-details">
+          <div class="event-name">Comic Con 2024</div>
+          <div class="event-time">10:00 AM - 6:00 PM • Main Auditorium</div>
+          <div class="event-tickets">
+            <div class="ticket-count">
+              <span class="sold">842</span> sold • <span class="available">158</span> available
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-day">22</div>
+          <div class="event-month">Oct</div>
+        </div>
+        <div class="event-details">
+          <div class="event-name">Anime Festival</div>
+          <div class="event-time">11:00 AM - 8:00 PM • Main Auditorium</div>
+          <div class="event-tickets">
+            <div class="ticket-count">
+              <span class="sold">524</span> sold • <span class="available">476</span> available
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

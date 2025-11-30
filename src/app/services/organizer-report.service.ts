@@ -1,13 +1,15 @@
 // services/organizer-report.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map, switchMap } from 'rxjs';
-import { AuthService, User } from './auth.service';
+import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { BookingService, Booking } from './booking.service';
 import { WaitlistService } from './waitlist.service';
 import { Event } from '../models/event.model';
 import { AnalyticsSummary } from '../models/analytics-summary.model';
 import { ChartData } from '../models/chart-data.model';
+import { User } from '../models/user.model';
+
 
 export interface OrganizerDashboardData {
   organizer: User;
@@ -37,7 +39,7 @@ export class OrganizerReportService {
       switchMap(user => {
         if (user && user.role === 'organizer') {
           return this.eventService.events$.pipe(
-            map(events => events.filter(e => e.organizerId === user.id)),
+            map(events => events.filter(e => e.organizerId === user.userId)),
             switchMap(organizerEvents => {
               const totalEvents = organizerEvents.length;
               const upcomingEvents = organizerEvents.filter(e => e.status === 'upcoming');

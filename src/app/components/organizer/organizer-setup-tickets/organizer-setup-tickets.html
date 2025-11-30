@@ -1,0 +1,103 @@
+<!-- Ticket Setup Page -->
+  <div class="page-section" >
+    <div class="header">
+      <h1>Ticket Setup</h1>
+
+      <hr class="my-4" />
+      <button class="back-btn" routerLink="/organizer">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </button>
+    </div>
+
+    <div class="form-container">
+      <h3>Ticket Type</h3>
+      
+      <div class="ticket-types">
+        <div class="ticket-type">
+          <div class="ticket-header">
+            <div class="ticket-name">General Admission</div>
+            <div class="ticket-price">$25.00</div>
+          </div>
+          <div class="ticket-details">
+            <div>Available: 500</div>
+            <div>Sold: 342</div>
+            <div>Max per order: 6</div>
+            <div>Status: Active</div>
+          </div>
+          <button type="button" class="edit-btn" routerLink="/organizer/edit-ticket-type">Edit</button>
+        </div>
+        
+        <div class="ticket-type">
+          <div class="ticket-header">
+            <div class="ticket-name">VIP Pass</div>
+            <div class="ticket-price">$75.00</div>
+          </div>
+          <div class="ticket-details">
+            <div>Available: 100</div>
+            <div>Sold: 78</div>
+            <div>Max per order: 4</div>
+            <div>Status: Active</div>
+          </div>
+          <button type="button" class="edit-btn" routerLink="/organizer/edit-ticket-type">Edit</button>
+        </div>
+        
+        <div class="ticket-type">
+          <div class="ticket-header">
+            <div class="ticket-name">Senior Citizen</div>
+            <div class="ticket-price">$15.00</div>
+          </div>
+          <div class="ticket-details">
+            <div>Available: 50</div>
+            <div>Sold: 32</div>
+            <div>Max per order: 2</div>
+            <div>Status: Active</div>
+          </div>
+          <button type="button" class="edit-btn" routerLink="/organizer/edit-ticket-type">Edit</button>
+        </div>
+
+        <div class="ticket-type">
+          <div class="ticket-header">
+            <div class="ticket-name">Children</div>
+            <div class="ticket-price">$20.00</div>
+          </div>
+          <div class="ticket-details">
+            <div>Available: 60</div>
+            <div>Sold: 10</div>
+            <div>Max per order: 2</div>
+            <div>Status: Active</div>
+          </div>
+          <button type="button" class="edit-btn" routerLink="/organizer/edit-ticket-type">Edit</button>
+        </div>
+
+
+      </div>
+      
+      <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+        <h3>Create Promotional Code</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="promo-code">Promo Code</label>
+            <input type="text" id="promo-code" placeholder="e.g., EARLYBIRD20">
+          </div>
+          <div class="form-group">
+            <label for="discount-type">Discount Type</label>
+            <select id="discount-type">
+              <option value="percentage">Percentage</option>
+              <option value="fixed">Fixed Amount</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="discount-value">Discount Value</label>
+            <input type="number" id="discount-value" placeholder="e.g., 20">
+          </div>
+          <div class="form-group">
+            <label for="expiry-date">Expiry Date</label>
+            <input type="date" id="expiry-date">
+          </div>
+        </div>
+        <button type="button" class="submit-btn">Create Promo Code</button>
+      </div>
+    </div>
+  </div>
