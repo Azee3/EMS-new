@@ -1,9 +1,14 @@
-*{
+* {
   font-family: monsterrat, sans-serif;
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 1); /* Make card semi-transparent */
+  background-color: rgba(255, 255, 255, 0.8); /* Make card semi-transparent */
+  margin-top: 40px;
+  padding: 24px;
+  border-radius: 5%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: none;
 }
 
 .text-center {
@@ -18,13 +23,22 @@
 }
 
 .register-link {
-  color: #0d6efd;       /* Bootstrap blue */
+  color: #0d6efd; /* Bootstrap blue */
   font-weight: 600;
   cursor: pointer;
   text-decoration: none; /* remove underline */
 }
 
 .register-link:hover {
-  text-decoration: underline;  /* hover underline */
-  color: #084298;              /* darker blue on hover */
+  text-decoration: underline; /* hover underline */
+  color: #084298; /* darker blue on hover */
+}
+
+.main-background {
+  background-image: url('../../assets/clean-bg.png'); /* Adjust path as needed */
+  background-size: cover; /* Covers the entire element */
+  background-position: center top; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repetition */
+  height: 100vh; /* Example: full viewport height */
+  
 }

@@ -12,7 +12,7 @@
     <div class="theater-section">
       <h3 class="section-toggle-title">Section Toggle</h3>
       <div class="section-nav">
-        <button
+        <button 
           *ngFor="let section of sections; let i = index"
           (click)="changeSection(i)"
           [class.active]="i === currentSectionIndex"
@@ -96,8 +96,12 @@
         <div class="summary" *ngIf="selectedSeats.length > 0">
           <h3>Order Summary</h3>
           <div class="summary-item" *ngFor="let seat of selectedSeats">
-            <span>Seat {{ seat.number }} ({{ seat.section }}) ({{ seat.seatType }})</span>
-            <span>${{ seat.price }}</span>
+            <span class="seat-name">
+              Seat {{ seat.number }}<br>
+              <small class="seat-description">({{ seat.section }}) ({{ seat.seatType }})</small>
+            </span>
+            <span class="seat-price">${{ seat.price }}</span>
+            
           </div>
           <div class="summary-item total">
             <span>Total</span>

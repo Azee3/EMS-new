@@ -1,26 +1,44 @@
 * {
-    font-family: monsterrat, sans-serif;
+  font-family: monsterrat, sans-serif;
 }
 
-.btn-primary {
-    background-color: #b11515;
-    color: white;
-    border: none;
+.card {
+  background-color: rgba(255, 255, 255, 0.8); /* Make card semi-transparent */
+  margin-top: 40px;
+  padding: 24px;
+  border-radius: 5%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: none;
 }
 
 .text-center {
-    text-align: center;
-    font-weight: bold;
+  text-align: center;
+  font-weight: bold;
 }
 
-.footer-link {
-  color: #0d6efd;       /* Bootstrap blue */
+.btn-primary {
+  background-color: #b11515;
+  color: white;
+  border: none;
+}
+
+.login-link {
+  color: #0d6efd; /* Bootstrap blue */
   font-weight: 600;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: none; /* remove underline */
 }
 
-.footer-link:hover {
-  text-decoration: underline;
-  color: #084298;       /* darker blue on hover */
+.login-link:hover {
+  text-decoration: underline; /* hover underline */
+  color: #084298; /* darker blue on hover */
+}
+
+.main-background {
+  background-image: url('../../assets/clean-bg.png'); /* Adjust path as needed */
+  background-size: cover; /* Covers the entire element */
+  background-position: center top; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repetition */
+  height: 100vh; /* Example: full viewport height */
+  
 }

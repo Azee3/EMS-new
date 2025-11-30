@@ -1,21 +1,24 @@
-<div class="container mt-4">
-  <h2>Browse Events</h2>
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let event of events">
-      <app-event-cards
-        [id]="event.eventId"
-        [title]="event.title"
-        [description]="event.description"
-        [picture]="event.posterURL || ''"
-        [date]="event.date"
-        [startTime]="event.startTime"
-        [location]="event.location"
-        [ticketsLeft]="event.ticketsLeft"
-        [status]="event.status"
-        [onWaitlist]="isOnWaitlist(event)"
-        (book)="book(event)"
-        (joinWaitlist)="joinWaitlist(event)"
-      ></app-event-cards>
+
+  <div class="container mt-4">
+    <h2 class="page-title">Browse Events</h2>
+    <hr class="my-4" />
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let event of events">
+        <app-event-cards
+          [id]="event.eventId"
+          [title]="event.title"
+          [description]="event.description"
+          [picture]="event.posterURL || ''"
+          [date]="event.date"
+          [startTime]="event.startTime"
+          [location]="event.location"
+          [ticketsLeft]="event.ticketsLeft"
+          [status]="event.status"
+          [onWaitlist]="isOnWaitlist(event)"
+          (book)="book(event)"
+          (joinWaitlist)="joinWaitlist(event)"
+        ></app-event-cards>
+      </div>
     </div>
   </div>
-</div>
+

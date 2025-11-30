@@ -13,7 +13,7 @@
     </div>
 
     <div class="image-section">
-      <img src="assets/chair-homescreen.png" alt="Description of image" />
+      <img class="cartoon-chair" src="assets/chair-homescreen.png" alt="Description of image" />
     </div>
   </div>
 
@@ -75,16 +75,15 @@
 
   <hr class="my-10" />
 
-  <!-- Featured booking tickets-->
+  <!-- Featured events -->
   <section class="featured-events-section">
     <div class="container mt-5">
-      <div class="text-center">
-        <div class="section-title">
-          <p>Featured Events</p>
-        </div>
-      </div>
+      <div class="text-center"></div>
       <div class="mt-5">
         <div class="row">
+          <div class="section-title">
+            <p>Featured Events</p>
+          </div>
           <div class="col-md-4 mb-4" *ngFor="let event of data">
             <app-event-cards
               [id]="event.id"

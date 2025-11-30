@@ -8,22 +8,22 @@ export class EventCards{
       { 
         id: 1,
         picture:'https://picsum.photos/id/11/200/100',
-        title: 'title1',
-        description: 'Description 1',
+        title: 'Comic Con 2025',
+        description: 'Date : 18 / 08 / 2025',
       },
 
       {
         id: 2,
         picture:'https://picsum.photos/id/11/200/100',
-        title: 'title2',
-        description: 'Description 2',
+        title: 'Star Wars : Meet and Greet',
+        description: 'Date : 09 / 11 / 2025',
       },
 
       {
         id: 3,
         picture:'https://picsum.photos/id/11/200/100',
-        title: 'title3',
-        description: 'Description 3',
+        title: 'Symphony Orchestra',
+        description: 'Date : 24 / 02 / 2025',
       },
       
       

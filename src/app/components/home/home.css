@@ -3,6 +3,11 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.background{
+  padding-bottom: 100px;
+
+}
+
 .title{
   font-weight: bold;
 }
@@ -34,6 +39,8 @@
   height: auto;
   border-radius: 8px;
   
+}.mt-5{
+  margin-top: none;
 }
 
 .btn-primary {
@@ -50,6 +57,7 @@
 
 .btn-primary:hover {
   background-color: #df0f35;
+  scale: 1.02;
 }
 
 h1 {
@@ -103,7 +111,7 @@ p {
   color: rgb(0, 0, 0);
   font-size: 2.5rem;
   font-weight: bold;
-  padding-top: 100px;
+  padding-top: 24px;
   
 }
 
@@ -113,8 +121,11 @@ p {
   
 }
 
+
+
 /* Make the image smaller */
 .img-inner img {
+  
   height: 450px;      /* adjust as you like (e.g., 250px, 350px) */
   object-fit: cover;  /* keeps image proportions */
 }
@@ -137,4 +148,52 @@ p {
 
 .img-caption p {
   font-size: 18px; /* increase description size */
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80vh;
+  
+  gap: 3rem;
+}
+  .title {
+    font-size: 25px; /* Smaller font size for mobile */
+  }
+  .lead {
+    font-size: 0.8rem; /* Example: adjust heading size */
+  }
+  .btn-primary{
+    width: 100px;
+    height: 40px;
+    font-size: 0.5rem;
+    align-content: center;
+  }
+
+  .cartoon-chair{
+    scale: 1.7;
+  }
+
+}
+
+/* You can add more media queries for different breakpoints if needed */
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 15px; /* Smaller font size for mobile */
+  }
+  .lead {
+    font-size: 0.5rem; /* Example: adjust heading size */
+  }
+  .btn-primary{
+    width: 79px;
+    height: 40px;
+    font-size: 8px;
+    align-content: center;
+  }
+
+  .cartoon-chair{
+    scale: 1.7;
+  }
 }

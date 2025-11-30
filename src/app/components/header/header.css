@@ -10,7 +10,25 @@
     transition: all 0.3s ease;
 }
 
+.user-status{
+    margin-left: 24px;
+}
 
+.navbar-brand{
+    scale: 1.2;
+    margin-left:27px;
+}
+
+.user-name{
+    font-weight: 600;
+    font-size: smaller;
+    
+}
+
+.greeting{
+    font-weight: 780;
+    font-size: 19px;
+}
 
 .nav-item{
     margin-left: 20px;
@@ -18,8 +36,12 @@
     transition: color 0.3s;
 }
 
+.nav-item:hover{
+    transform: scale(1.08);
+}
+
 .navbar-logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.09);
 }
 
 /* For different screen sizes */
