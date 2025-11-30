@@ -28,7 +28,7 @@
             <h3>{{ booking.event?.title || 'Event details not found' }}</h3>
             <p><strong>Status:</strong> <span class="status-{{booking.event?.status}}">{{ booking.event?.status }}</span></p>
             <p><strong>Date:</strong> {{ booking.event?.date | date: 'fullDate' }} at {{ booking.event?.startTime }}</p>
-            <p><strong>Seats:</strong> {{ booking.seatNumbers.join(', ') }}</p>
+            <p><strong>Seats:</strong> <span *ngFor="let seat of booking.seats; let last = last">{{ seat.number }} ({{ seat.seatType }}){{ !last ? ', ' : '' }}</span></p>
             <p><strong>Final Price:</strong> {{ booking.finalPrice | currency }}</p>
           </div>
         </div>

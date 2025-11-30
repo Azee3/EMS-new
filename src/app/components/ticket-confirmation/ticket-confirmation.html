@@ -1,18 +1,35 @@
-<div class="container mt-4">
-  <h2>Ticket Confirmation</h2>
-  <div *ngIf="ticketDetails; else noTicket">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-header">Your Ticket</h5>
-        <p><strong>Event:</strong> {{ ticketDetails.eventName }}</p>
-        <p><strong>Seats:</strong> {{ ticketDetails.seatNumbers.join(', ') }}</p>
-        <p><strong>Ticket Type:</strong> {{ ticketDetails.ticketType }}</p>
-        <img [src]="ticketDetails.qrCodeUrl" alt="QR Code">
+<div class="main-background">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div *ngIf="ticketDetails; else noTicket">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">Ticket Confirmation</h3>
+            </div>
+            <div class="card-body text-center">
+              <h5 class="text-center">Your Ticket</h5>
+              <p><strong>Id:</strong> {{ ticketDetails.bookingId }}</p>
+              <p><strong>Event:</strong> {{ ticketDetails.eventName }}</p>
+              <div *ngIf="ticketDetails.seats && ticketDetails.seats.length > 0">
+                <strong>Seats:</strong>
+                <ul>
+                  <li *ngFor="let seat of ticketDetails.seats">
+                    Seat {{ seat.number }} ({{ seat.seatType }})
+                  </li>
+                </ul>
+              </div>
+              <img [src]="ticketDetails.qrCodeUrl" alt="QR Code" />
+            </div>
+            <div class="card-footer text-center">
+              <button class="btn btn-primary mt-3" (click)="emailTicket()">Email Ticket</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <button class="btn btn-primary mt-3" (click)="emailTicket()">Email Ticket</button>
   </div>
-  <ng-template #noTicket>
-    <div class="alert alert-warning">No confirmed ticket found. Complete a booking first.</div>
-  </ng-template>
 </div>
+<ng-template #noTicket>
+  <div class="alert alert-warning">No confirmed ticket found. Complete a booking first.</div>
+</ng-template>

@@ -51,7 +51,7 @@ export class OrganizerReportService {
                   const orgBookings = bookings.filter(b => eventIds.includes(b.eventId));
                   const orgWaitlist = waitlist.filter(w => eventIds.includes(w.eventId));
                   
-                  const ticketsSold = orgBookings.reduce((acc, b) => acc + b.seatNumbers.length, 0);
+                  const ticketsSold = orgBookings.reduce((acc, b) => acc + b.seats.length, 0);
                   const totalRevenue = orgBookings.reduce((acc, b) => acc + b.finalPrice, 0);
                   const waitlistRequests = orgWaitlist.length;
                   
@@ -83,7 +83,7 @@ export class OrganizerReportService {
     if (!events.length || !bookings.length) return null;
 
     // Calculate overall metrics for all organizer's events
-    const totalTicketsSold = bookings.reduce((acc, b) => acc + b.seatNumbers.length, 0);
+    const totalTicketsSold = bookings.reduce((acc, b) => acc + b.seats.length, 0);
     const totalRevenue = bookings.reduce((acc, b) => acc + b.finalPrice, 0);
     
     // Calculate occupancy rate based on tickets sold vs total potential
@@ -92,7 +92,7 @@ export class OrganizerReportService {
       // If ticketsteft exists and is a number, use it. Otherwise assume some default.
       const ticketsLeft = typeof e.ticketsLeft === 'number' ? e.ticketsLeft : 0;
       const eventBookings = bookings.filter(b => b.eventId === e.eventId);
-      const eventTicketsSold = eventBookings.reduce((sum, b) => sum + b.seatNumbers.length, 0);
+      const eventTicketsSold = eventBookings.reduce((sum, b) => sum + b.seats.length, 0);
       return acc + eventTicketsSold + ticketsLeft;
     }, 0);
 
@@ -112,40 +112,7 @@ export class OrganizerReportService {
     };
   }
 
-  // Alternative simpler approach without capacity calculation
-  generateAnalyticsSummarySimple(events: Event[], bookings: Booking[]): AnalyticsSummary | null {
-    if (!events.length || !bookings.length) return null;
-
-    const totalTicketsSold = bookings.reduce((acc, b) => acc + b.seatNumbers.length, 0);
-    const totalRevenue = bookings.reduce((acc, b) => acc + b.finalPrice, 0);
-    
-    // Since we don't have capacity data, set occupancy rate to 0 or calculate differently
-    // Option 1: Set to 0 (no capacity data available)
-    const occupancyRate = 0;
-
-    // Option 2: Calculate based on events with ticketsLeft data (if available)
-    // const eventsWithTicketData = events.filter(e => typeof e.ticketsteft === 'number');
-    // if (eventsWithTicketData.length > 0) {
-    //   const totalPotentialTickets = eventsWithTicketData.reduce((acc, e) => {
-    //     const eventBookings = bookings.filter(b => b.eventId === e.eventId);
-    //     const eventTicketsSold = eventBookings.reduce((sum, b) => sum + b.seatNumbers.length, 0);
-    //     return acc + eventTicketsSold + (e.ticketsteft || 0);
-    //   }, 0);
-    //   occupancyRate = totalPotentialTickets > 0 ? (totalTicketsSold / totalPotentialTickets) * 100 : 0;
-    // }
-
-    const eventDates = events.map(e => new Date(e.date)).filter(date => !isNaN(date.getTime()));
-    const startDate = eventDates.length > 0 ? new Date(Math.min(...eventDates.map(d => d.getTime()))) : new Date();
-    const endDate = eventDates.length > 0 ? new Date(Math.max(...eventDates.map(d => d.getTime()))) : new Date();
-
-    return {
-      eventId: 'all',
-      totalTicketsSold,
-      totalRevenue,
-      occupancyRate,
-      dateRange: { start: startDate, end: endDate }
-    };
-  }
+  
 
   generateChartData(bookings: Booking[]): ChartData | null {
     if (!bookings.length) return null;
@@ -163,7 +130,7 @@ export class OrganizerReportService {
           labels.push(month);
         }
       }
-      monthlyData[month].sales += booking.seatNumbers.length;
+      monthlyData[month].sales += booking.seats.length;
       monthlyData[month].revenue += booking.finalPrice;
     });
 

@@ -32,13 +32,13 @@ h2 {
 }
 
 .view-switcher button:hover {
-  color: #0056b3;
+  color: #8d0000;
 }
 
 .view-switcher button.active {
-  color: #0056b3;
+  color: #7c0000;
   font-weight: bold;
-  border-bottom-color: #0056b3;
+  border-bottom-color: #860000;
 }
 
 .content-area {

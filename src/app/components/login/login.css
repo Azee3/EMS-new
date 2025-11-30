@@ -23,7 +23,7 @@
 }
 
 .register-link {
-  color: #0d6efd; /* Bootstrap blue */
+  color: #b11515; /* Bootstrap blue */
   font-weight: 600;
   cursor: pointer;
   text-decoration: none; /* remove underline */
@@ -31,7 +31,7 @@
 
 .register-link:hover {
   text-decoration: underline; /* hover underline */
-  color: #084298; /* darker blue on hover */
+  color: #ff0000; /* darker blue on hover */
 }
 
 .main-background {

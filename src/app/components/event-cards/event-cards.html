@@ -1,16 +1,21 @@
 <div class="card">
   <!-- Photo -->
-<img [src]="picture || 'https://placehold.co/600x400'" class="card-img-top" alt="Event Poster" style="height: 200px; object-fit: cover;">
+  <img
+    [src]="picture || 'https://placehold.co/600x400'"
+    class="card-img-top"
+    alt="Event Poster"
+    style="height: 200px; object-fit: cover"
+  />
   <div class="card-body">
-    <a [routerLink]="'/event/' + id">
+    <a class="link" [routerLink]="'/event/' + id">
       <h3 class="card-title">{{ title }}</h3>
     </a>
     <p class="text-secondary">
-     {{ description }}
+      {{ description }}
     </p>
 
     <div *ngIf="date">
-      <p class="card-text"><strong>Date:</strong> {{ date | date:'fullDate' }}</p>
+      <p class="card-text"><strong>Date:</strong> {{ date | date : 'fullDate' }}</p>
     </div>
     <div *ngIf="startTime">
       <p class="card-text"><strong>Time:</strong> {{ startTime }}</p>
@@ -19,7 +24,9 @@
       <p class="card-text"><strong>Location:</strong> {{ location }}</p>
     </div>
     <div *ngIf="ticketsLeft > 0 || status">
-      <p class="card-text"><strong>Tickets Left:</strong> {{ ticketsLeft > 0 ? ticketsLeft : 'Sold Out' }}</p>
+      <p class="card-text">
+        <strong>Tickets Left:</strong> {{ ticketsLeft > 0 ? ticketsLeft : 'Sold Out' }}
+      </p>
     </div>
 
     <ng-container *ngIf="viewMode === 'user'">
@@ -37,7 +44,7 @@
           </ng-template>
         </ng-container>
         <ng-container *ngIf="status !== 'upcoming' && status">
-            <button class="btn btn-secondary" disabled>Sold Out</button>
+          <button class="btn btn-secondary" disabled>Sold Out</button>
         </ng-container>
       </ng-template>
     </ng-container>

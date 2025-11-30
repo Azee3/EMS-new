@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+export interface SeatSelection {
+  number: string;
+  seatType: string;
+}
+
 export interface Booking {
   id: string;
   userId?: string;
@@ -8,7 +13,7 @@ export interface Booking {
   email: string;
   eventId: string;
   eventName: string;
-  seatNumbers: string[];
+  seats: SeatSelection[];
   subtotal: number;
   promoCode?: string | null;
   discount: number;

@@ -20,8 +20,8 @@ export class TicketConfirmationComponent implements OnDestroy {
         const last = list[list.length - 1];
         this.ticketDetails = {
           eventName: last.eventName,
-          seatNumbers: last.seatNumbers || [],
-          ticketType: 'General Admission',
+          bookingId : last.id,
+          seats: last.seats || [],
           qrCodeUrl: `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(last.id)}`
         };
       }

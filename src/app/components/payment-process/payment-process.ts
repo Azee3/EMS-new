@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { BookingService } from '../../services/booking.service';
 import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-payment-process',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './payment-process.html',
   styleUrls: ['./payment-process.css']
 })
@@ -33,7 +33,7 @@ export class PaymentProcessComponent {
     }
 
     // Simulate payment processing (would call real payment API in production)
-    const seatsCount = booking.seatNumbers ? booking.seatNumbers.length : 1;
+    const seatsCount = booking.seats ? booking.seats.length : 1;
     const success = this.eventService.bookSeats(booking.eventId, seatsCount);
     if (!success) {
       alert('Payment failed: not enough seats available.');

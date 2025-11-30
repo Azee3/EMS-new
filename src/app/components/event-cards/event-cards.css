@@ -13,12 +13,18 @@
 .card-title {
   font-weight: bold;
   color: #333;
-  text-decoration: none;
+  text-decoration-color: #b70122 ;
   transition: color 0.3s ease;
+ 
+}
+
+.link{
+  text-decoration: underline ;
+  text-decoration-color: #b70122;
 }
 
 a:hover .card-title {
-  color: #007bff; /* Bootstrap primary color */
+  color: #df0f35; /* Bootstrap primary color */
 }
 
 .card-text {
@@ -26,12 +32,18 @@ a:hover .card-title {
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  margin-top: 10px;
+  background-color: #b70122;
+  border-color: #b70122;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+.btn-secondary{
+  margin-top: 10px;
+  
+}
+
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #df0f35;
+  border-color: #df0f35;
 }

@@ -5,9 +5,10 @@
 }
 
 .navbar-logo {
-    height: 40px; /* Adjust based on your image proportions */
+    height: 60px; /* Adjust based on your image proportions */
     width: auto;
     transition: all 0.3s ease;
+    margin-left: 24px;
 }
 
 .user-status{

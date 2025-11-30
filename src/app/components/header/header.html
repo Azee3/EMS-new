@@ -5,16 +5,19 @@
 
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="
-              currentUser?.role === 'admin'
-                ? '/admin'
-                : currentUser?.role === 'organizer' && currentUser?.isFirstLogin === false
-                ? '/organizer'
-                : '/'
-            "
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">
-      <img src="assets/help-auditorium-logo.png" alt="EMS Logo" class="navbar-logo" />
+    <a
+      class="navbar-brand"
+      [routerLink]="
+        currentUser?.role === 'admin'
+          ? '/admin'
+          : currentUser?.role === 'organizer' && currentUser?.isFirstLogin === false
+          ? '/organizer'
+          : '/'
+      "
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <img src="assets/ems-logo.png" alt="EMS Logo" class="navbar-logo" />
     </a>
 
     <button

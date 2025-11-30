@@ -98,7 +98,7 @@ export class SelectSeatsComponent implements OnInit, OnDestroy {
         }
 
         // Create a pending booking and move to promo code step
-        const seatNumbers = this.selectedSeats.map(seat => seat.number);
+        const seats = this.selectedSeats.map(seat => ({ number: seat.number, seatType: seat.seatType }));
         const booking: Booking = {
             id: String(Date.now()),
             userId: this.auth.getUser()?.id,
@@ -106,7 +106,7 @@ export class SelectSeatsComponent implements OnInit, OnDestroy {
             email: this.booking.email,
             eventId: this.selectedEvent.eventId,
             eventName: this.selectedEvent.title,
-            seatNumbers,
+            seats: seats,
             subtotal: this.totalPrice,
             promoCode: null,
             discount: 0,
