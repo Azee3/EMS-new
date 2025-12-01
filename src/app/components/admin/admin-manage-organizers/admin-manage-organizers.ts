@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from '../../../services/users.service';
 import { Router } from '@angular/router';
-// RouterLink not required in this component
+
 
 @Component({
   selector: 'app-admin-manage-organizers',
@@ -44,7 +44,7 @@ export class AdminManageOrganizersComponent {
         fullName: vals.fullName || '',
         email: vals.email || '',
         organizationName: vals.organizationName || '',
-        // leave password blank – organizer will set on first login
+        
       });
       // redirect admin immediately to the new organizer detail
       this.form.reset();

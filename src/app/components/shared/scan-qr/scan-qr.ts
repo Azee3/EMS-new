@@ -16,14 +16,14 @@ export class ScanQrComponent  {
     this.isScanning = true;
     this.scanResult = '';
 
-    // Simulate scanning after 2 seconds
+   
     setTimeout(() => {
       const sampleResults = [
-        'https://example.com/qr-data',
+        'https://help.com/qr-data',
         'QR-CODE-12345',
-        'Hello from QR Scanner!',
-        'Product: ABC-789-XYZ',
-        'Contact: test@example.com'
+        'Test!',
+        'Product: ABC-123-ABC',
+        'Contact: test@help.com'
       ];
       this.scanResult = sampleResults[Math.floor(Math.random() * sampleResults.length)];
       this.isScanning = false;

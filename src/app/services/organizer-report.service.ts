@@ -84,14 +84,14 @@ export class OrganizerReportService {
   generateAnalyticsSummary(events: Event[], bookings: Booking[]): AnalyticsSummary | null {
     if (!events.length || !bookings.length) return null;
 
-    // Calculate overall metrics for all organizer's events
+    // Calculate overall for all organizer's events
     const totalTicketsSold = bookings.reduce((acc, b) => acc + b.seats.length, 0);
     const totalRevenue = bookings.reduce((acc, b) => acc + b.finalPrice, 0);
     
-    // Calculate occupancy rate based on tickets sold vs total potential
+    // Calculate occupancy rate based on tickets sold 
     
     const totalTicketsAvailable = events.reduce((acc, e) => {
-      // If ticketsteft exists and is a number, use it. Otherwise assume some default.
+      // If tickets teft exists and is a number, use it. Otherwise assume some default.
       const ticketsLeft = typeof e.ticketsLeft === 'number' ? e.ticketsLeft : 0;
       const eventBookings = bookings.filter(b => b.eventId === e.eventId);
       const eventTicketsSold = eventBookings.reduce((sum, b) => sum + b.seats.length, 0);

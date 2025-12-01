@@ -36,7 +36,6 @@
                 (click)="selectSeat(seat)"
                 *ngFor="let seat of row"
               >
-               
                 {{ seat.number.split('-')[1] }}
               </div>
               <div class="row-indicator">{{ $any(row).rowLetter }}</div>

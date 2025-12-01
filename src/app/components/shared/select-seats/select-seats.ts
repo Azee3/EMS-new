@@ -92,7 +92,7 @@ export class SelectSeatsComponent implements OnInit, OnDestroy {
             alert('Please select at least one seat.');
             return;
         }
-        // If there's a selected event, attempt to book seats (decrement available tickets)
+        // If there's a selected event, attempt to book seats 
         if (!this.selectedEvent) {
             alert('No event selected. Please choose an event first.');
             this.router.navigateByUrl('/browse-events');
