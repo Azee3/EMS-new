@@ -19,9 +19,9 @@ export class AuthService {
       const stored = this.usersService.findByEmail(email);
       if (!stored) return reject(new Error('User not found'));
 
-      // Allow plaintext-seeded passwords during development: accept if stored value equals plaintext
-      const isPlaintextSeed = stored.password === password;
-      if (!isPlaintextSeed && password !== stored.password)
+    
+      const passwordMatch = stored.password === password;
+      if (!passwordMatch && password !== stored.password)
         return reject(new Error('Invalid credentials'));
 
       try {

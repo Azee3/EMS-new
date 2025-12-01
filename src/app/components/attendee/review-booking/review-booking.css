@@ -66,23 +66,23 @@
 }
 
 .register-link {
-  color: #b11515; /* Bootstrap blue */
+  color: #b11515; 
   font-weight: 600;
   cursor: pointer;
-  text-decoration: none; /* remove underline */
+  text-decoration: none; 
 }
 
 .register-link:hover {
-  text-decoration: underline; /* hover underline */
-  color: #ff0000; /* darker blue on hover */
+  text-decoration: underline; 
+  color: #ff0000; 
 }
 
 .main-background {
-  background-image: url('../../../assets/clean-bg.png'); /* Adjust path as needed */
-  background-size: cover; /* Covers the entire element */
-  background-position: center top; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents repetition */
-  height: 100vh; /* Example: full viewport height */
+  background-image: url('../../../assets/clean-bg.png'); 
+  background-size: cover;
+  background-position: center top; 
+  background-repeat: no-repeat; 
+  height: 100vh; 
   
 }
 

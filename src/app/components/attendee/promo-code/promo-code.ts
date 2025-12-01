@@ -29,7 +29,7 @@ export class PromoCodeComponent {
     const b = this.bookingService.getCurrent();
     if (!b) return;
 
-    // Example promo rules
+    // Example promo code
     if (this.promoCode === 'SALE10') {
       this.discount = b.subtotal * 0.1;
     } else if (this.promoCode === 'HALF50') {

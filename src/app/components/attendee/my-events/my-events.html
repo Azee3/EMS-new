@@ -2,16 +2,18 @@
   <h2>My Events Dashboard</h2>
 
   <div class="view-switcher">
-    <button 
+    <!-- <button 
       [class.active]="activeView === 'upcoming'" 
       (click)="setView('upcoming')">
       Upcoming Events
-    </button>
+    </button> -->
+
     <button 
       [class.active]="activeView === 'history'" 
       (click)="setView('history')">
       Booking History
     </button>
+
     <button 
       [class.active]="activeView === 'waitlist'" 
       (click)="setView('waitlist')">

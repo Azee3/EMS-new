@@ -1,4 +1,4 @@
-// models/chart-data.model.ts
+
 export interface ChartData {
   labels: string[];
   datasets: {

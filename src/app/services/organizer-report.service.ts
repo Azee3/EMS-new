@@ -89,7 +89,7 @@ export class OrganizerReportService {
     const totalRevenue = bookings.reduce((acc, b) => acc + b.finalPrice, 0);
     
     // Calculate occupancy rate based on tickets sold vs total potential
-    // Since we don't have capacity, we'll use tickets sold + tickets left as total capacity
+    
     const totalTicketsAvailable = events.reduce((acc, e) => {
       // If ticketsteft exists and is a number, use it. Otherwise assume some default.
       const ticketsLeft = typeof e.ticketsLeft === 'number' ? e.ticketsLeft : 0;

@@ -99,7 +99,10 @@
   background: #dde4e6;
 }
 
+.submit-btn:active {
+  background-color: #db0101;
+}
 
-.btn-primary:active {
+.submit-btn:hover {
   background-color: #db0101;
 }

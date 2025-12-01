@@ -48,7 +48,12 @@ export class LoginComponent {
         this.router.navigate(['/organizer'], { queryParams: { returnUrl } });
         return;
       }
-
+      
+      if (user.role === 'attendee') {
+        this.router.navigate(['/'], { queryParams: { returnUrl } });
+        return;
+      }
+      
       // default
       this.router.navigateByUrl(returnUrl);
     } catch (err: any) {

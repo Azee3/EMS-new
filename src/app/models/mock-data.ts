@@ -1,7 +1,7 @@
 import { User } from './user.model';
 
 
-// --- USERS ---
+
 export const MOCK_USERS: User[] = [
   {
     userId: 'user-organizer-01',
@@ -39,7 +39,7 @@ export const MOCK_USERS: User[] = [
   {
     userId: 'user-admin-01',
     fullName: 'Primary Administrator',
-    email: 'superadmin@ticketing.com',
+    email: 'admin@help.com',
     role: 'admin',
     password: 'admin123',
     isFirstLogin: false,
