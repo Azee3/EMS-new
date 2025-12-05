@@ -1,27 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Booking } from '../models/booking.model';
 
-export interface SeatSelection {
-  number: string;
-  seatType: string;
-}
-
-export interface Booking {
-  id: string;
-  userId?: string;
-  fullName: string;
-  email: string;
-  eventId: string;
-  eventName: string;
-  seats: SeatSelection[];
-  subtotal: number;
-  promoCode?: string | null;
-  discount: number;
-  finalPrice: number;
-  status: 'pending' | 'paid' | 'cancelled';
-  createdAt: string;
-  updatedAt: string;
-}
 
 const BOOKINGS_KEY = 'ticketing_bookings_v1';
 const CURRENT_KEY = 'ticketing_current_booking';

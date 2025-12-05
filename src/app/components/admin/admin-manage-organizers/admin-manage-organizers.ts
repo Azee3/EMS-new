@@ -39,13 +39,15 @@ export class AdminManageOrganizersComponent {
       return;
     }
     try {
+      
       const vals = this.form.value;
+      
       const created = await this.users.createOrganizer({
         fullName: vals.fullName || '',
         email: vals.email || '',
         organizationName: vals.organizationName || '',
-        
       });
+
       // redirect admin immediately to the new organizer detail
       this.form.reset();
       this.router.navigate(['/admin/organizers', created.id]);

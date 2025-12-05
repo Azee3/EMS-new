@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map, switchMap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { EventService } from './event.service';
-import { BookingService, Booking } from './booking.service';
+import { BookingService } from './booking.service';
 import { WaitlistService } from './waitlist.service';
 import { Event } from '../models/event.model';
 import { AnalyticsSummary } from '../models/analytics-summary.model';
 import { ChartData } from '../models/chart-data.model';
 import { User } from '../models/user.model';
+import { Booking } from '../models/booking.model';
+
 
 
 export interface OrganizerDashboardData {

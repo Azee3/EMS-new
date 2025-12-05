@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookingService, Booking } from '../../../services/booking.service';
+import { BookingService} from '../../../services/booking.service';
 import { Subscription } from 'rxjs';
+import { Booking } from '../../../models/booking.model';
 
 @Component({
   selector: 'app-ticket-confirmation',

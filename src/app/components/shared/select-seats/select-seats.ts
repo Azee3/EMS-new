@@ -6,9 +6,11 @@ import { Subscription } from 'rxjs';
 import { AuthService} from '../../../services/auth.service';
 import { EventService } from '../../../services/event.service';
 import { Event } from '../../../models/event.model';
-import { BookingService, Booking } from '../../../services/booking.service';
+import { BookingService} from '../../../services/booking.service';
 import { GenerateSeatsService } from '../../../services/generate-seats.service';
 import { User } from '../../../models/user.model';
+import { Booking } from '../../../models/booking.model';
+
 
 
 

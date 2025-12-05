@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService} from '../../../services/auth.service';
-import { Booking, BookingService } from '../../../services/booking.service';
+import {  BookingService } from '../../../services/booking.service';
 import { Event } from '../../../models/event.model';
 import { Waitlist } from '../../../models/waitlist.model';
 import { EventService } from '../../../services/event.service';
@@ -9,6 +9,9 @@ import { WaitlistService } from '../../../services/waitlist.service';
 import { Observable, of, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import  {User } from '../../../models/user.model';
+import { Booking } from '../../../models/booking.model';
+import { SeatSelection } from '../../../models/seat-selection.model';
+
 
 
 interface BookingWithEvent extends Booking {
