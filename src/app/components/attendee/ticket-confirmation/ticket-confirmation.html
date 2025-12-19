@@ -22,7 +22,16 @@
               <img [src]="ticketDetails.qrCodeUrl" alt="QR Code" />
             </div>
             <div class="card-footer text-center">
-              <button class="btn btn-primary mt-3" (click)="emailTicket()">Email Ticket</button>
+              <button type="button" class="btn btn-primary mt-3" (click)="send()">
+                Email Ticket
+              </button>
+              <div *ngIf="emailStatus === 'sent'" class="alert alert-success mt-3">
+                ✅ Ticket has been sent to your email!
+              </div>
+
+              <div *ngIf="emailStatus === 'error'" class="alert alert-danger mt-3">
+                ❌ Failed to send ticket. Please try again.
+              </div>
             </div>
           </div>
         </div>
