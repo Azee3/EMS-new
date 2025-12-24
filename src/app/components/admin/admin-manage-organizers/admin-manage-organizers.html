@@ -4,7 +4,7 @@
   </div>
 
   <hr class="my-4" />
-  
+
   <button class="back-btn" routerLink="/admin">
     <i class="fas fa-arrow-left"></i> Back to Dashboard
   </button>
@@ -24,8 +24,8 @@
         <label class="form-label">Organization Name</label>
         <input class="form-control" formControlName="organizationName" />
       </div>
+      <button class="btn btn-primary" type="submit">Add Organizer</button>
     </form>
-    <button class="btn btn-primary" type="submit">Add Organizer</button>
     <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
     <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
   </div>

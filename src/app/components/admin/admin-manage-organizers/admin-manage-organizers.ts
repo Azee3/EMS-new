@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from '../../../services/users.service';
-import { Router } from '@angular/router';
-
+import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-admin-manage-organizers',
@@ -14,17 +13,24 @@ import { Router } from '@angular/router';
   styleUrl: './admin-manage-organizers.css'
 })
 export class AdminManageOrganizersComponent {
-  form: any;
 
+  form: any;
   message = '';
   error = '';
 
-  constructor(private fb: FormBuilder, private users: UsersService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private users: UsersService,
+    private router: Router
+  ) {
     this.form = this.fb.group({
-      fullName: ['', [Validators.required]],
+      fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      organizationName: ['']
+      organizationName: ['', Validators.required]
     });
+
+    // ✅ EmailJS init (put your PUBLIC KEY here)
+    emailjs.init('WaZyBZGWRGXCC0N29');
   }
 
   get organizers() {
@@ -34,33 +40,51 @@ export class AdminManageOrganizersComponent {
   async submit() {
     this.message = '';
     this.error = '';
+
     if (this.form.invalid) {
       this.error = 'Please fill required fields';
       return;
     }
+
+    const { fullName, email, organizationName } = this.form.value;
+
     try {
-      
-      const vals = this.form.value;
-      
+      // 1️⃣ Create organizer in system
       const created = await this.users.createOrganizer({
-        fullName: vals.fullName || '',
-        email: vals.email || '',
-        organizationName: vals.organizationName || '',
+        fullName,
+        email,
+        organizationName
       });
 
-      // redirect admin immediately to the new organizer detail
+      // 2️⃣ Send Email via EmailJS
+      await emailjs.send(
+        'service_q8p7exa',
+        'template_lrhut2q',
+        {
+          name: fullName,
+          orgname: organizationName,
+          email: email
+        }
+      );
+
+      this.message = 'Organizer created and email sent!';
       this.form.reset();
+
+      // 3️⃣ Redirect to detail page
       this.router.navigate(['/admin/organizers', created.id]);
+
     } catch (err: any) {
-      this.error = err.message || 'Failed to create organizer';
+      this.error = err.message || 'Failed to create organizer or send email';
     }
   }
 
   deleteOrganizer(id: string) {
     this.message = '';
     this.error = '';
+
     const ok = confirm('Delete this organizer? This cannot be undone.');
     if (!ok) return;
+
     try {
       this.users.deleteUser(id);
       this.message = 'Organizer deleted';
